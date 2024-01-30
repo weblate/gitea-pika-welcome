@@ -14,9 +14,9 @@ use crate::save_window_size;
 pub fn build_ui(app: &adw::Application) {
 
     // setup glib
-    gtk::glib::set_prgname(Some("Cosmo libAdwaita in RS Template"));
-    glib::set_application_name("Cosmo libAdwaita in RS Template");
-    let glib_settings = gio::Settings::new("com.github.adw-rs-test.cosmo");
+    gtk::glib::set_prgname(Some("PikaOS First Setup"));
+    glib::set_application_name("PikaOS First Setup");
+    let glib_settings = gio::Settings::new("com.github.pikaos-linux.pikafirstsetup");
 
     // Create a label called "_warning_label"
     let _warning_label = Label::builder()
@@ -72,13 +72,13 @@ pub fn build_ui(app: &adw::Application) {
     // create the main Application window
     let window = adw::ApplicationWindow::builder()
         // The text on the titlebar
-        .title("Libadwaita gtk4 example window in rust")
+        .title("PikaOS First Setup")
         // link it to the application "app"
         .application(app)
         // Add the box called "_main_box" to it
         .content(&_main_box)
         // Application icon
-        .icon_name("org.cosmicfusion.example")
+        .icon_name("com.github.pikaos-linux.pikafirstsetup")
         // Get current size from glib
         .default_width(glib_settings.int("window-width"))
         .default_height(glib_settings.int("window-height"))
@@ -87,8 +87,9 @@ pub fn build_ui(app: &adw::Application) {
         .height_request(500)
         // Hide window instead of destroy
         .hide_on_close(true)
+        .deletable(false)
         // Startup
-        .startup_id("org.cosmicfusion.example")
+        .startup_id("com.github.pikaos-linux.pikafirstsetup")
         // build the window
         .build();
 

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PikaOS First Setup
+Name[en_US]=PikaOS First Setup
+Exec=pika-first-setup
+Icon=com.github.pikaos-linux.pikafirstsetup
+Terminal=false
+Type=Application
+Encoding=UTF-8
+NoDisplay=true
+StartupNotify=true

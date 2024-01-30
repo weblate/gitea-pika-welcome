@@ -1,0 +1,11 @@
+/home/ward/builds/debian-rebuilder/pika-first-setup/target/debug/deps/futures_core-2dbbb353258b9d0a.rmeta: /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/lib.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/future.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/stream.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/mod.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/poll.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/mod.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/atomic_waker.rs
+
+/home/ward/builds/debian-rebuilder/pika-first-setup/target/debug/deps/futures_core-2dbbb353258b9d0a.d: /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/lib.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/future.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/stream.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/mod.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/poll.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/mod.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/atomic_waker.rs
+
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/lib.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/future.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/stream.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/mod.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/poll.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/mod.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/futures-core-0.3.30/src/task/__internal/atomic_waker.rs:

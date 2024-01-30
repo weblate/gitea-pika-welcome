@@ -1,0 +1,13 @@
+/home/ward/builds/debian-rebuilder/pika-first-setup/target/debug/deps/quote-049cc129c3f9be27.rmeta: /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/lib.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ext.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/format.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ident_fragment.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/to_tokens.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/runtime.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/spanned.rs
+
+/home/ward/builds/debian-rebuilder/pika-first-setup/target/debug/deps/libquote-049cc129c3f9be27.rlib: /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/lib.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ext.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/format.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ident_fragment.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/to_tokens.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/runtime.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/spanned.rs
+
+/home/ward/builds/debian-rebuilder/pika-first-setup/target/debug/deps/quote-049cc129c3f9be27.d: /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/lib.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ext.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/format.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ident_fragment.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/to_tokens.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/runtime.rs /home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/spanned.rs
+
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/lib.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ext.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/format.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/ident_fragment.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/to_tokens.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/runtime.rs:
+/home/ward/.cargo/registry/src/github.com-1ecc6299db9ec823/quote-1.0.35/src/spanned.rs:

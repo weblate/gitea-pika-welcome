@@ -16,7 +16,7 @@ use crate::save_window_size::save_window_size;
 
 /// main function
 fn main() {
-    let application = adw::Application::new(Some("org.cosmicfusion.example"), Default::default());
+    let application = adw::Application::new(Some("com.github.pikaos-linux.pikafirstsetup"), Default::default());
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
         let provider = CssProvider::new();

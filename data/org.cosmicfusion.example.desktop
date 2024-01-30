@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Libadwaita gtk4 example window in rust
+Name[en_US]=Libadwaita gtk4 example window in rust
+Comment=An Example Libadwaita and gtk4 application written in rust
+Exec=gtk4-rs-adw-project-template
+Icon=org.cosmicfusion.example
+Terminal=false
+Type=Application
+Encoding=UTF-8
+StartupNotify=true

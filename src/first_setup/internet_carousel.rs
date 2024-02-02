@@ -13,6 +13,7 @@ use std::process::Command;
 use std::cell::RefCell;
 use std::rc::Rc;
 use std::borrow::Borrow as the_rc_borrow;
+use std::env;
 
 pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connected: &Rc<RefCell<bool>>) {
 
@@ -85,6 +86,8 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
         .orientation(Orientation::Horizontal)
         .halign(Align::Center)
         .valign(Align::End)
+        .vexpand(true)
+        .hexpand(true)
         .hexpand(true)
         .margin_end(15)
         .margin_start(15)
@@ -93,13 +96,36 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
         .spacing(80)
         .build();
 
+    let first_setup_internet_button_content_box = gtk::Box::builder()
+        .orientation(Orientation::Vertical)
+        .build();
+
+    let first_setup_internet_button_content_text = gtk::Label::builder()
+        .label("Set up a network connection and a proxy/VPN.")
+        .build();
+
+    let first_setup_internet_button_content = adw::ButtonContent::builder()
+        .label("Open Network Settings.")
+        .icon_name("network-wired")
+        .build();
+
+    let first_setup_internet_button = gtk::Button::builder()
+        .child(&first_setup_internet_button_content_box)
+        .halign(Align::Center)
+        .valign(Align::Center)
+        .build();
+
     internet_buttons_box.append(&internet_skip_button);
     internet_buttons_box.append(&internet_next_button);
 
-    first_setup_internet_box.append(&first_setup_internet_box_text);
-    first_setup_internet_box.append(&internet_buttons_box);
+    first_setup_internet_button_content_box.append(&first_setup_internet_button_content);
+    first_setup_internet_button_content_box.append(&first_setup_internet_button_content_text);
 
     first_setup_carousel.append(&first_setup_internet_box);
+
+    first_setup_internet_box.append(&first_setup_internet_box_text);
+    first_setup_internet_box.append(&first_setup_internet_button);
+    first_setup_internet_box.append(&internet_buttons_box);
 
     let internet_connected_status = internet_connected.clone();
 
@@ -122,6 +148,20 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
             }
         }
     }));
+
+    first_setup_internet_button.connect_clicked(move |_| {
+        let env_xdg_session_desktop = env::var("XDG_SESSION_DESKTOP").unwrap();
+        if env_xdg_session_desktop.contains("gnome") || env_xdg_session_desktop.contains("ubuntu") {
+            Command::new("gtk-launch")
+                .arg("gnome-network-panel.desktop")
+                .spawn()
+                .expect("gnome-control-center failed to start");
+        } else {
+            Command::new("nm-connection-editor")
+                .spawn()
+                .expect("nm-connection-editor failed to start");
+        }
+    });
 
     internet_next_button.connect_clicked(clone!(@weak first_setup_carousel => move |_| {
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);

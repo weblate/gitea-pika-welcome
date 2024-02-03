@@ -70,6 +70,6 @@ pub fn update_carousel(first_setup_carousel: &adw::Carousel, internet_connected:
     }));
 
     first_setup_start_button.connect_clicked(clone!(@strong internet_connected_status, @weak first_setup_carousel => move |_| {
-        println!("{}", internet_connected_status.borrow_mut());
+        first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(4), true);
     }));
 }

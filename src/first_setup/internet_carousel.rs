@@ -14,8 +14,9 @@ use std::cell::RefCell;
 use std::rc::Rc;
 use std::borrow::Borrow as the_rc_borrow;
 use std::env;
+use gtk::gio::ffi::GAsyncReadyCallback;
 
-pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connected: &Rc<RefCell<bool>>) {
+pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connected: &Rc<RefCell<bool>>, window: &adw::ApplicationWindow) {
 
     let (internet_loop_sender, internet_loop_receiver) = async_channel::unbounded();
     let internet_loop_sender = internet_loop_sender.clone();
@@ -127,6 +128,18 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
     first_setup_internet_box.append(&first_setup_internet_button);
     first_setup_internet_box.append(&internet_buttons_box);
 
+    let first_setup_internet_skip_dialog = adw::MessageDialog::builder()
+        .heading("Skip Network Setup?")
+        .body("Skipping Network Setup will make many of the next steps unavailable!\nThis is NOT recommended.")
+        .transient_for(window)
+        .hide_on_close(true)
+        .build();
+
+    first_setup_internet_skip_dialog.add_response("skip_cancel", "Return to Network Setup");
+    first_setup_internet_skip_dialog.add_response("skip_confirm", "Just Skip!");
+    first_setup_internet_skip_dialog.set_response_appearance("skip_confirm", adw::ResponseAppearance::Destructive);
+
+
     let internet_connected_status = internet_connected.clone();
 
     let internet_loop_context = MainContext::default();
@@ -167,7 +180,11 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
     }));
 
-    internet_skip_button.connect_clicked(clone!(@weak first_setup_carousel => move |_| {
-        first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
+    internet_skip_button.connect_clicked(clone!(@weak first_setup_carousel, @weak first_setup_internet_skip_dialog => move |_| {
+        first_setup_internet_skip_dialog.choose(None::<&gio::Cancellable>, move |choice| {
+            if choice == "skip_confirm" {
+                first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
+            }
+        });
     }));
 }

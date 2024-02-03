@@ -62,7 +62,8 @@ pub fn first_setup(window: &adw::ApplicationWindow) {
     
     // Initial Carousel
     initial_carousel(&first_setup_carousel);
-    internet_carousel(&first_setup_carousel, &internet_connected);
+    internet_carousel(&first_setup_carousel, &internet_connected, &window);
+
     update_carousel(&first_setup_carousel, &internet_connected);
 
     // Add file to window

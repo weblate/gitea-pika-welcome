@@ -17,6 +17,7 @@ use crate::connection_check::check_internet_connection;
 // carousel crates
 use crate::first_setup::initial_carousel::initial_carousel;
 use crate::first_setup::internet_carousel::internet_carousel;
+use crate::first_setup::user_carousel::user_carousel;
 use crate::first_setup::update_carousel::update_carousel;
 
 pub fn first_setup(window: &adw::ApplicationWindow) {
@@ -63,7 +64,7 @@ pub fn first_setup(window: &adw::ApplicationWindow) {
     // Initial Carousel
     initial_carousel(&first_setup_carousel);
     internet_carousel(&first_setup_carousel, &internet_connected, &window);
-
+    user_carousel(&first_setup_carousel);
     update_carousel(&first_setup_carousel, &internet_connected);
 
     // Add file to window

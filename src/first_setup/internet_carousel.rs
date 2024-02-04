@@ -89,7 +89,6 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
         .valign(Align::End)
         .vexpand(true)
         .hexpand(true)
-        .hexpand(true)
         .margin_end(15)
         .margin_start(15)
         .margin_bottom(15)
@@ -165,8 +164,8 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
     first_setup_internet_button.connect_clicked(move |_| {
         let env_xdg_session_desktop = env::var("XDG_SESSION_DESKTOP").unwrap();
         if env_xdg_session_desktop.contains("gnome") || env_xdg_session_desktop.contains("ubuntu") {
-            Command::new("gtk-launch")
-                .arg("gnome-network-panel.desktop")
+            Command::new("gnome-control-center")
+                .arg("network")
                 .spawn()
                 .expect("gnome-control-center failed to start");
         } else {

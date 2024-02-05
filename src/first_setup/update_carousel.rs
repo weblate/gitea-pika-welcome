@@ -60,7 +60,7 @@ pub fn update_carousel(first_setup_carousel: &adw::Carousel, internet_connected:
     let internet_loop_context = MainContext::default();
     // The main loop executes the asynchronous block
     internet_loop_context.spawn_local(clone!(@strong internet_connected_status, @weak first_setup_start_button => async move {
-        while let Ok(state) = internet_loop_receiver.recv().await {
+        while let Ok(_state) = internet_loop_receiver.recv().await {
             if *internet_connected_status.borrow_mut() == true {
                 first_setup_start_button.set_label("true");
             } else {

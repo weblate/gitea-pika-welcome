@@ -14,7 +14,7 @@ use std::cell::RefCell;
 use std::rc::Rc;
 use std::borrow::Borrow as the_rc_borrow;
 use regex::Regex;
-use std::env;
+use std::{env, thread, time};
 use gtk::Align::Center;
 use gtk::gio::ffi::GAsyncReadyCallback;
 use gtk::pango::TextTransform::Capitalize;
@@ -37,7 +37,15 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     let user_info_full_name_valid = Rc::new(RefCell::new(false));
     let user_info_passwords_valid = Rc::new(RefCell::new(false));
 
-
+    let (user_loop_sender, user_loop_receiver) = async_channel::unbounded();
+    let user_loop_sender = user_loop_sender.clone();
+    // The long running operation runs now in a separate thread
+    gio::spawn_blocking(move || {
+        loop {
+            thread::sleep(time::Duration::from_secs(1));
+            user_loop_sender.send_blocking(true).expect("The channel needs to be open.");
+        }
+    });
 
     let first_setup_user_box = gtk::Box::builder()
         // that puts items vertically
@@ -91,12 +99,21 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     let user_info_password_verify = adw::PasswordEntryRow::builder()
         .hexpand(true)
         .title("Enter User password again:")
-        .visible(false)
+        .build();
+
+    let user_info_password_verify_revealer = gtk::Revealer::builder()
+        .child(&user_info_password_verify)
+        .reveal_child(false)
+        .transition_type(RevealerTransitionType::SwingDown)
         .build();
 
     let user_info_avatar = adw::Avatar::builder()
         .show_initials(true)
         .size(128)
+        .margin_top(15)
+        .margin_bottom(15)
+        .margin_start(15)
+        .margin_end(15)
         .build();
 
     let _user_info_avatar_full_name_binding = user_info_full_name
@@ -111,6 +128,17 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         .margin_end(15)
         .build();
     user_info_listbox.add_css_class("boxed-list");
+
+    let error_label = gtk::Label::builder()
+        .margin_top(15)
+        .margin_bottom(15)
+        .margin_start(15)
+        .margin_end(15)
+        .visible(false)
+        .label("NULL")
+        .build();
+
+    error_label.add_css_class("red-text");
 
     let user_next_button = gtk::Button::builder()
         .label("Next")
@@ -129,17 +157,30 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     user_info_listbox.append(&user_info_username);
     user_info_listbox.append(&user_info_full_name);
     user_info_listbox.append(&user_info_password);
-    user_info_listbox.append(&user_info_password_verify);
+    user_info_listbox.append(&user_info_password_verify_revealer);
 
     user_info_box.append(&user_info_avatar);
     user_info_box.append(&user_info_listbox);
 
     first_setup_user_box.append(&first_setup_user_box_text);
     first_setup_user_box.append(&user_info_box_clamp);
+    first_setup_user_box.append(&error_label);
     first_setup_user_box.append(&user_next_button);
 
+    // The main loop executes the asynchronous block
+    let user_loop_context = MainContext::default();
+    user_loop_context.spawn_local(clone!(@strong user_info_username_valid, @strong user_info_full_name_valid, @strong user_info_passwords_valid, @weak user_next_button => async move {
+        while let Ok(_state) = user_loop_receiver.recv().await {
+            if *user_info_username_valid.borrow_mut() == true && *user_info_full_name_valid.borrow_mut() == true && *user_info_passwords_valid.borrow_mut() == true {
+                user_next_button.set_sensitive(true);
+            } else {
+                user_next_button.set_sensitive(false);
+            }
+        }
+    }));
 
-    user_info_username.connect_changed(clone!(@strong user_info_username_valid, @weak user_info_username, @weak user_info_full_name => move |_| {
+
+    user_info_username.connect_changed(clone!(@strong user_info_username_valid, @weak user_info_username, @weak user_info_full_name, @weak error_label => move |_| {
         let user_info_username_string = user_info_username.text().to_string();
 
         user_info_full_name.set_text(&uppercase_first_letter(&user_info_username_string));
@@ -154,31 +195,84 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
             user_info_username.set_position(-1);
         }
 
-        if !only_alphanumeric(&user_info_username_string) {
-            *user_info_username_valid.borrow_mut()=true;
+        let mut username_is_root = false;
+        let mut username_is_pikaos = false;
+        let mut username_is_special = false;
+
+        if only_alphanumeric(&user_info_username_string) {
+            error_label.set_visible(false);
+            username_is_root=false;
         } else {
-            *user_info_username_valid.borrow_mut()=false;
+            error_label.set_visible(true);
+            error_label.set_label("Username can not contain special characters.");
+            username_is_root=true;
         }
 
         if user_info_username_string != "pikaos" {
-            *user_info_username_valid.borrow_mut()=true;
+            error_label.set_visible(false);
+            username_is_pikaos=false;
         } else {
-            *user_info_username_valid.borrow_mut()=false;
+            error_label.set_visible(true);
+            error_label.set_label("Username can not be pikaos.");
+            username_is_pikaos=true;
         }
 
         if user_info_username_string != "root" {
-            *user_info_username_valid.borrow_mut()=true;
+            error_label.set_visible(false);
+            username_is_special=false;
+        } else {
+            error_label.set_visible(true);
+            error_label.set_label("Username can not be root.");
+            username_is_special=true;
+        }
+
+        if username_is_root == false && username_is_pikaos == false && username_is_special == false {
+            if !user_info_username.text().is_empty() {
+                *user_info_username_valid.borrow_mut()=true;
+            }
         } else {
             *user_info_username_valid.borrow_mut()=false;
         }
     }));
 
-    user_info_full_name.connect_changed(clone!(@strong user_info_full_name_valid, @weak user_info_full_name => move |_| {
+    user_info_full_name.connect_changed(clone!(@strong user_info_full_name_valid, @weak user_info_full_name, @weak error_label => move |_| {
         let user_info_full_name_string = user_info_full_name.text().to_string();
 
         if user_info_full_name_string.len() > 32 {
                 user_info_full_name.set_text(&user_info_full_name_string[..32]);
                 user_info_full_name.set_position(-1);
+        }
+
+        if user_info_full_name.text().is_empty() {
+            *user_info_full_name_valid.borrow_mut()=false;
+        } else {
+            *user_info_full_name_valid.borrow_mut()=true;
+        }
+    }));
+
+    user_info_password.connect_changed(clone!(@strong user_info_passwords_valid,@weak user_info_password_verify_revealer, @weak user_info_password, @weak user_info_password_verify, @weak error_label => move |_| {
+        if user_info_password.text().is_empty() {
+            user_info_password_verify_revealer.set_reveal_child(false)
+        } else {
+            user_info_password_verify_revealer.set_reveal_child(true)
+        }
+
+        if user_info_password.text() == user_info_password_verify.text() {
+            error_label.set_visible(false);
+            *user_info_passwords_valid.borrow_mut()=true;
+        } else {
+            *user_info_passwords_valid.borrow_mut()=false;
+        }
+    }));
+
+    user_info_password_verify.connect_changed(clone!(@strong user_info_passwords_valid, @weak user_info_password, @weak user_info_password_verify, @weak error_label => move |_| {
+        if user_info_password.text() == user_info_password_verify.text() {
+            error_label.set_visible(false);
+            *user_info_passwords_valid.borrow_mut()=true;
+        } else {
+            error_label.set_visible(true);
+            error_label.set_label("Passwords do not match!");
+            *user_info_passwords_valid.borrow_mut()=false;
         }
     }));
 

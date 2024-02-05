@@ -37,39 +37,42 @@ pub fn update_carousel(first_setup_carousel: &adw::Carousel, internet_connected:
         .vexpand(true)
         .build();
 
-    let first_setup_initial_box_text = adw::StatusPage::builder()
-        .icon_name("debian-swirl")
-        .title("Welcome")
-        .description("This wizard will help you finish your PikaOS installation.")
+    let first_setup_update_box_text = adw::StatusPage::builder()
+        .icon_name("software-update-available")
+        .title("System Updates")
+        .description("We recommend updating your PikaOS install before proceeding\nWould you like to Update your system?")
         .build();
-    first_setup_initial_box_text.add_css_class("compact");
+    first_setup_update_box_text.add_css_class("compact");
 
-    let first_setup_start_button = gtk::Button::builder()
-        .label("Let's Start")
+    let first_setup_update_button = gtk::Button::builder()
+        .label("Update")
+        .sensitive(false)
         .halign(Align::Center)
         .build();
 
-    first_setup_start_button.add_css_class("suggested-action");
-    first_setup_start_button.add_css_class("pill");
+    first_setup_update_button.add_css_class("suggested-action");
+    first_setup_update_button.add_css_class("pill");
 
-    first_setup_update_box.append(&first_setup_initial_box_text);
-    first_setup_update_box.append(&first_setup_start_button);
+    first_setup_update_box.append(&first_setup_update_box_text);
+    first_setup_update_box.append(&first_setup_update_button);
 
     first_setup_carousel.append(&first_setup_update_box);
 
     let internet_loop_context = MainContext::default();
     // The main loop executes the asynchronous block
-    internet_loop_context.spawn_local(clone!(@strong internet_connected_status, @weak first_setup_start_button => async move {
+    internet_loop_context.spawn_local(clone!(@strong internet_connected_status, @weak first_setup_update_button => async move {
         while let Ok(_state) = internet_loop_receiver.recv().await {
             if *internet_connected_status.borrow_mut() == true {
-                first_setup_start_button.set_label("true");
+                first_setup_update_button.set_sensitive(true);
+                first_setup_update_button.set_label("Update");
             } else {
-                first_setup_start_button.set_label("false");
+                first_setup_update_button.set_sensitive(false);
+                first_setup_update_button.set_label("Disabled.. Network setup was skipped");
             }
         }
     }));
 
-    first_setup_start_button.connect_clicked(clone!(@strong internet_connected_status, @weak first_setup_carousel => move |_| {
+    first_setup_update_button.connect_clicked(clone!(@strong internet_connected_status, @weak first_setup_carousel => move |_| {
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(4), true);
     }));
 }

@@ -1,23 +1,26 @@
 // GTK crates
+use adw::prelude::*;
+use adw::*;
+use gdk::Display;
+use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::prelude::*;
 use gtk::*;
-use adw::prelude::*;
-use adw::*;
-use glib::*;
-use gdk::Display;
 
 //use crate::check_internet_connection;
-use std::process::Command;
-use std::cell::RefCell;
-use std::rc::Rc;
-use std::borrow::Borrow as the_rc_borrow;
-use std::env;
 use gtk::gio::ffi::GAsyncReadyCallback;
+use std::borrow::Borrow as the_rc_borrow;
+use std::cell::RefCell;
+use std::env;
+use std::process::Command;
+use std::rc::Rc;
 
-pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connected: &Rc<RefCell<bool>>, window: &adw::ApplicationWindow) {
-
+pub fn internet_carousel(
+    first_setup_carousel: &adw::Carousel,
+    internet_connected: &Rc<RefCell<bool>>,
+    window: &adw::ApplicationWindow,
+) {
     let (internet_loop_sender, internet_loop_receiver) = async_channel::unbounded();
     let internet_loop_sender = internet_loop_sender.clone();
     // The long running operation runs now in a separate thread
@@ -37,9 +40,13 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
                 .output()
                 .expect("failed to execute process");
             if check_internet_connection_cli.status.success() {
-                internet_loop_sender.send_blocking(true).expect("The channel needs to be open.");
+                internet_loop_sender
+                    .send_blocking(true)
+                    .expect("The channel needs to be open.");
             } else {
-                internet_loop_sender.send_blocking(false).expect("The channel needs to be open.");
+                internet_loop_sender
+                    .send_blocking(false)
+                    .expect("The channel needs to be open.");
             }
         }
     });
@@ -136,8 +143,8 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
 
     first_setup_internet_skip_dialog.add_response("skip_cancel", "Return to Network Setup");
     first_setup_internet_skip_dialog.add_response("skip_confirm", "Just Skip!");
-    first_setup_internet_skip_dialog.set_response_appearance("skip_confirm", adw::ResponseAppearance::Destructive);
-
+    first_setup_internet_skip_dialog
+        .set_response_appearance("skip_confirm", adw::ResponseAppearance::Destructive);
 
     let internet_connected_status = internet_connected.clone();
 
@@ -179,11 +186,13 @@ pub fn internet_carousel(first_setup_carousel: &adw::Carousel, internet_connecte
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
     }));
 
-    internet_skip_button.connect_clicked(clone!(@weak first_setup_carousel, @weak first_setup_internet_skip_dialog => move |_| {
-        first_setup_internet_skip_dialog.choose(None::<&gio::Cancellable>, move |choice| {
-            if choice == "skip_confirm" {
-                first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
-            }
-        });
-    }));
+    internet_skip_button.connect_clicked(
+        clone!(@weak first_setup_carousel, @weak first_setup_internet_skip_dialog => move |_| {
+            first_setup_internet_skip_dialog.choose(None::<&gio::Cancellable>, move |choice| {
+                if choice == "skip_confirm" {
+                    first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(2), true);
+                }
+            });
+        }),
+    );
 }

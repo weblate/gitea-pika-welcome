@@ -1,12 +1,12 @@
 // GTK crates
+use adw::prelude::*;
+use adw::*;
+use gdk::Display;
+use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::prelude::*;
 use gtk::*;
-use adw::prelude::*;
-use adw::*;
-use glib::*;
-use gdk::Display;
 
 // application crates
 mod build_ui;
@@ -20,7 +20,10 @@ mod first_setup;
 
 /// main function
 fn main() {
-    let application = adw::Application::new(Some("com.github.pikaos-linux.pikafirstsetup"), Default::default());
+    let application = adw::Application::new(
+        Some("com.github.pikaos-linux.pikafirstsetup"),
+        Default::default(),
+    );
     application.connect_startup(|app| {
         // The CSS "magic" happens here.
         let provider = CssProvider::new();
@@ -35,7 +38,6 @@ fn main() {
 
         app.connect_activate(build_ui);
     });
-    
+
     application.run();
 }
-

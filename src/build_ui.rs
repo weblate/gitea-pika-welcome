@@ -1,21 +1,20 @@
 // GTK crates
+use adw::ffi::{AdwToolbarStyle, ADW_TOOLBAR_FLAT};
+use adw::prelude::*;
+use adw::*;
+use gdk::Display;
+use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::prelude::*;
 use gtk::*;
-use adw::prelude::*;
-use adw::*;
-use adw::ffi::{ADW_TOOLBAR_FLAT, AdwToolbarStyle};
-use glib::*;
-use gdk::Display;
 
 // application crates
-use crate::save_window_size;
 /// first setup crates
 use crate::first_setup::first_setup::first_setup;
+use crate::save_window_size;
 
 pub fn build_ui(app: &adw::Application) {
-
     // setup glib
     gtk::glib::set_prgname(Some("PikaOS First Setup"));
     glib::set_application_name("PikaOS First Setup");

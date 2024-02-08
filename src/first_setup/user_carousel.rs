@@ -1,23 +1,23 @@
 // GTK crates
+use adw::prelude::*;
+use adw::*;
+use gdk::Display;
+use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::prelude::*;
 use gtk::*;
-use adw::prelude::*;
-use adw::*;
-use glib::*;
-use gdk::Display;
 
 //use crate::check_internet_connection;
-use std::process::Command;
-use std::cell::RefCell;
-use std::rc::Rc;
-use std::borrow::Borrow as the_rc_borrow;
-use regex::Regex;
-use std::{env, thread, time};
-use gtk::Align::Center;
 use gtk::gio::ffi::GAsyncReadyCallback;
 use gtk::pango::TextTransform::Capitalize;
+use gtk::Align::Center;
+use regex::Regex;
+use std::borrow::Borrow as the_rc_borrow;
+use std::cell::RefCell;
+use std::process::Command;
+use std::rc::Rc;
+use std::{env, thread, time};
 
 fn only_alphanumeric(input: &str) -> bool {
     return input.chars().all(|c| c.is_alphanumeric());
@@ -32,7 +32,6 @@ fn uppercase_first_letter(s: &str) -> String {
 }
 
 pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
-
     let user_info_username_valid = Rc::new(RefCell::new(false));
     let user_info_full_name_valid = Rc::new(RefCell::new(false));
     let user_info_passwords_valid = Rc::new(RefCell::new(false));
@@ -40,11 +39,11 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     let (user_loop_sender, user_loop_receiver) = async_channel::unbounded();
     let user_loop_sender = user_loop_sender.clone();
     // The long running operation runs now in a separate thread
-    gio::spawn_blocking(move || {
-        loop {
-            thread::sleep(time::Duration::from_secs(1));
-            user_loop_sender.send_blocking(true).expect("The channel needs to be open.");
-        }
+    gio::spawn_blocking(move || loop {
+        thread::sleep(time::Duration::from_secs(1));
+        user_loop_sender
+            .send_blocking(true)
+            .expect("The channel needs to be open.");
     });
 
     let first_setup_user_box = gtk::Box::builder()
@@ -78,7 +77,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         .maximum_size(500)
         .build();
 
-    let user_info_username =  adw::EntryRow::builder()
+    let user_info_username = adw::EntryRow::builder()
         .hexpand(true)
         .title("Username:")
         .input_purpose(InputPurpose::Alpha)
@@ -179,7 +178,6 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         }
     }));
 
-
     user_info_username.connect_changed(clone!(@strong user_info_username_valid, @weak user_info_username, @weak user_info_full_name, @weak error_label => move |_| {
         let user_info_username_string = user_info_username.text().to_string();
 
@@ -199,39 +197,35 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         let mut username_is_pikaos = false;
         let mut username_is_special = false;
 
-        if only_alphanumeric(&user_info_username_string) {
-            error_label.set_visible(false);
+        if user_info_username_string != "root" {
             username_is_root=false;
         } else {
-            error_label.set_visible(true);
-            error_label.set_label("Username can not contain special characters.");
+            error_label.set_label("Username can not be root.");
             username_is_root=true;
         }
 
         if user_info_username_string != "pikaos" {
-            error_label.set_visible(false);
             username_is_pikaos=false;
         } else {
-            error_label.set_visible(true);
             error_label.set_label("Username can not be pikaos.");
             username_is_pikaos=true;
         }
 
-        if user_info_username_string != "root" {
-            error_label.set_visible(false);
+        if only_alphanumeric(&user_info_username_string) {
             username_is_special=false;
         } else {
-            error_label.set_visible(true);
-            error_label.set_label("Username can not be root.");
+            error_label.set_label("Username can not contain special characters.");
             username_is_special=true;
         }
 
         if username_is_root == false && username_is_pikaos == false && username_is_special == false {
+            error_label.set_visible(false);
             if !user_info_username.text().is_empty() {
                 *user_info_username_valid.borrow_mut()=true;
             }
         } else {
             *user_info_username_valid.borrow_mut()=false;
+            error_label.set_visible(true);
         }
     }));
 
@@ -275,7 +269,6 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
             *user_info_passwords_valid.borrow_mut()=false;
         }
     }));
-
 
     user_next_button.connect_clicked(clone!(@weak first_setup_carousel => move |_| {
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(3), true);

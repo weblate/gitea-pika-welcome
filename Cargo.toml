@@ -1,5 +1,5 @@
 [package]
-name = "gtk4-rs-adw-project-template"
+name = "pika-first-setup-gtk4"
 version = "0.1.0"
 edition = "2021"
 
@@ -10,3 +10,7 @@ adw = { version = "0.5.3", package = "libadwaita", features = ["v1_4"] }
 gtk = { version = "0.7.3", package = "gtk4", features = ["v4_12"] }
 async-channel = "2.1.1"
 regex = "1.10.3"
+rust-apt = "0.6.0"
+vte = { version = "0.0.2", package = "zoha-vte4", features = ["v0_72"] }
+duct = "0.13.7"
+os_pipe = "1.1.5"

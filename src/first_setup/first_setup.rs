@@ -19,6 +19,9 @@ use crate::first_setup::initial_carousel::initial_carousel;
 use crate::first_setup::internet_carousel::internet_carousel;
 use crate::first_setup::update_carousel::update_carousel;
 use crate::first_setup::user_carousel::user_carousel;
+use crate::first_setup::driver_carousel::driver_carousel;
+use crate::first_setup::codec_carousel::codec_carousel;
+use crate::first_setup::gameutils_carousel::gameutils_carousel;
 
 pub fn first_setup(window: &adw::ApplicationWindow) {
     let first_setup_carousel = adw::Carousel::builder()
@@ -63,6 +66,9 @@ pub fn first_setup(window: &adw::ApplicationWindow) {
     internet_carousel(&first_setup_carousel, &internet_connected, &window);
     user_carousel(&first_setup_carousel);
     update_carousel(&first_setup_carousel, &internet_connected, &window);
+    driver_carousel(&first_setup_carousel, &internet_connected);
+    codec_carousel(&first_setup_carousel, &internet_connected, &window);
+    gameutils_carousel(&first_setup_carousel, &internet_connected, &window);
 
     // Add file to window
     window.set_content(Some(&first_setup_window_toolbarview))

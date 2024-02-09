@@ -77,7 +77,6 @@ pub fn update_carousel(
     let first_setup_update_box = gtk::Box::builder()
         // that puts items vertically
         .orientation(Orientation::Vertical)
-        .vexpand(true)
         .valign(gtk::Align::Center)
         .hexpand(true)
         .vexpand(true)
@@ -180,12 +179,18 @@ pub fn update_carousel(
 
     let log_status_loop_context = MainContext::default();
     // The main loop executes the asynchronous block
-    log_status_loop_context.spawn_local(clone!(@weak system_update_dialog => async move {
+    log_status_loop_context.spawn_local(clone!(@weak system_update_dialog, @weak first_setup_update_button, @weak first_setup_update_skip_button => async move {
             while let Ok(state) = log_status_loop_receiver.recv().await {
                 if state == true {
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
                     system_update_dialog.set_body("Update Completed Successfully!");
+                    first_setup_update_button.remove_css_class("suggested-action");
+                    first_setup_update_skip_button.set_label("Next");
+                    first_setup_update_skip_button.add_css_class("suggested-action");
                 } else {
+                    first_setup_update_skip_button.remove_css_class("suggested-action");
+                    first_setup_update_skip_button.set_label("Skip");
+                    first_setup_update_button.add_css_class("suggested-action");
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
                     system_update_dialog.set_body("Update Failed!\nPlease try again.");
                 }

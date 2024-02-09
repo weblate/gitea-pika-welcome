@@ -8,6 +8,8 @@ use glib::*;
 use gtk::prelude::*;
 use gtk::*;
 
+use gettextrs::gettext;
+
 //use crate::check_internet_connection;
 use gtk::gio::ffi::GAsyncReadyCallback;
 use std::borrow::Borrow as the_rc_borrow;
@@ -64,8 +66,8 @@ pub fn internet_carousel(
 
     let first_setup_internet_box_text = adw::StatusPage::builder()
         .icon_name("network-cellular-acquiring")
-        .title("Internet")
-        .description("Checking Internet Connection...")
+        .title(gettext("first_setup_internet_box_text_title"))
+        .description(gettext("first_setup_internet_box_text_description"))
         .hexpand(true)
         .vexpand(true)
         .valign(Align::Start)
@@ -73,7 +75,7 @@ pub fn internet_carousel(
     first_setup_internet_box_text.add_css_class("compact");
 
     let internet_skip_button = gtk::Button::builder()
-        .label("Skip")
+        .label(gettext("internet_skip_button_label"))
         .halign(Align::Center)
         .sensitive(false)
         .build();
@@ -82,7 +84,7 @@ pub fn internet_carousel(
     internet_skip_button.add_css_class("pill");
 
     let internet_next_button = gtk::Button::builder()
-        .label("Next")
+        .label(gettext("internet_next_button_label"))
         .halign(Align::Center)
         .sensitive(false)
         .build();
@@ -108,11 +110,11 @@ pub fn internet_carousel(
         .build();
 
     let first_setup_internet_button_content_text = gtk::Label::builder()
-        .label("Set up a network connection and a proxy/VPN.")
+        .label(gettext("first_setup_internet_button_content_text_label"))
         .build();
 
     let first_setup_internet_button_content = adw::ButtonContent::builder()
-        .label("Open Network Settings.")
+        .label(gettext("first_setup_internet_button_content_label"))
         .icon_name("network-wired")
         .build();
 
@@ -135,14 +137,14 @@ pub fn internet_carousel(
     first_setup_internet_box.append(&internet_buttons_box);
 
     let first_setup_internet_skip_dialog = adw::MessageDialog::builder()
-        .heading("Skip Network Setup?")
-        .body("Skipping Network Setup will make many of the next steps unavailable!\nThis is NOT recommended.")
+        .heading(gettext("first_setup_internet_skip_dialog_heading"))
+        .body(gettext("first_setup_internet_skip_dialog_body"))
         .transient_for(window)
         .hide_on_close(true)
         .build();
 
-    first_setup_internet_skip_dialog.add_response("skip_cancel", "Return to Network Setup");
-    first_setup_internet_skip_dialog.add_response("skip_confirm", "Just Skip!");
+    first_setup_internet_skip_dialog.add_response("skip_cancel", &gettext("first_setup_internet_skip_dialog_skip_cancel_label"));
+    first_setup_internet_skip_dialog.add_response("skip_confirm", &gettext("first_setup_internet_skip_dialog_skip_confirm_label"));
     first_setup_internet_skip_dialog
         .set_response_appearance("skip_confirm", adw::ResponseAppearance::Destructive);
 
@@ -155,13 +157,13 @@ pub fn internet_carousel(
             if state == true {
                 internet_skip_button.set_sensitive(false);
                 internet_next_button.set_sensitive(true);
-                first_setup_internet_box_text.set_description(Some("Device connected to Internet Successfully!"));
+                first_setup_internet_box_text.set_description(Some(&gettext("first_setup_internet_box_text_description_true")));
                 first_setup_internet_box_text.set_icon_name(Some("network-cellular-signal-excellent"));
                 *internet_connected_status.borrow_mut()=true;
             } else {
                 internet_next_button.set_sensitive(false);
                 internet_skip_button.set_sensitive(true);
-                first_setup_internet_box_text.set_description(Some("No internet Connection!"));
+                first_setup_internet_box_text.set_description(Some(&gettext("first_setup_internet_box_text_description_false")));
                 first_setup_internet_box_text.set_icon_name(Some("network-cellular-offline"));
                 *internet_connected_status.borrow_mut()=false;
             }

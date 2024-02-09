@@ -13,6 +13,8 @@ use gtk::*;
 use vte::prelude::*;
 use vte::*;
 
+use gettextrs::gettext;
+
 use std::{thread, time};
 
 use std::{
@@ -84,13 +86,13 @@ pub fn update_carousel(
 
     let first_setup_update_box_text = adw::StatusPage::builder()
         .icon_name("software-update-available")
-        .title("System Updates")
+        .title(gettext("first_setup_update_box_text_title"))
         .description("We recommend updating your PikaOS install before proceeding\nWould you like to Update your system?")
         .build();
     first_setup_update_box_text.add_css_class("compact");
 
     let first_setup_update_button = gtk::Button::builder()
-        .label("Update")
+        .label(gettext("first_setup_update_button_label"))
         .sensitive(false)
         .build();
 
@@ -98,7 +100,7 @@ pub fn update_carousel(
     first_setup_update_button.add_css_class("pill");
 
     let first_setup_update_skip_button = gtk::Button::builder()
-        .label("Skip Updates")
+        .label(gettext("first_setup_update_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -141,9 +143,9 @@ pub fn update_carousel(
         .extra_child(&system_update_log_terminal_scroll)
         .width_request(400)
         .height_request(200)
-        .heading("System Update Log")
+        .heading(gettext("system_update_dialog_heading"))
         .build();
-    system_update_dialog.add_response("system_update_dialog_ok", "Ok");
+    system_update_dialog.add_response("system_update_dialog_ok", &gettext("system_update_dialog_ok_label"));
 
     first_setup_update_buttons_box.append(&first_setup_update_button);
     first_setup_update_buttons_box.append(&first_setup_update_skip_button);
@@ -160,10 +162,10 @@ pub fn update_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_update_button.set_sensitive(true);
-                    first_setup_update_button.set_label("Update");
+                    first_setup_update_button.set_label(&gettext("first_setup_update_button_label"));
                 } else {
                     first_setup_update_button.set_sensitive(false);
-                    first_setup_update_button.set_label("Disabled.. Network setup was skipped");
+                    first_setup_update_button.set_label(&gettext("internet_network_disabled"));
                 }
             }
         }),
@@ -183,16 +185,16 @@ pub fn update_carousel(
             while let Ok(state) = log_status_loop_receiver.recv().await {
                 if state == true {
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
-                    system_update_dialog.set_body("Update Completed Successfully!");
+                    system_update_dialog.set_body(&gettext("system_update_dialog_success_true"));
                     first_setup_update_button.remove_css_class("suggested-action");
-                    first_setup_update_skip_button.set_label("Next");
+                    first_setup_update_skip_button.set_label(&gettext("internet_next_button_label"));
                     first_setup_update_skip_button.add_css_class("suggested-action");
                 } else {
                     first_setup_update_skip_button.remove_css_class("suggested-action");
-                    first_setup_update_skip_button.set_label("Skip");
+                    first_setup_update_skip_button.set_label(&gettext("internet_skip_button_label"));
                     first_setup_update_button.add_css_class("suggested-action");
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
-                    system_update_dialog.set_body("Update Failed!\nPlease try again.");
+                    system_update_dialog.set_body(&gettext("system_update_dialog_success_false"));
                 }
             }
     }));

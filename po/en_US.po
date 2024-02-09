@@ -1,0 +1,169 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2024-02-09 17:48+0300\n"
+"PO-Revision-Date: 2024-02-09 17:55+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4\n"
+"X-Poedit-Basepath: .\n"
+
+msgid "first_setup_initial_box_text_title"
+msgstr "Welcome"
+
+msgid "first_setup_initial_box_text_description"
+msgstr "This wizard will help you finish your PikaOS installation."
+
+msgid "first_setup_start_button_label"
+msgstr "Let's Start"
+
+msgid "first_setup_window_headerbar_back_button_label"
+msgstr "Back"
+
+msgid "first_setup_internet_box_text_title"
+msgstr "Internet"
+
+msgid "first_setup_internet_box_text_description"
+msgstr "Checking Internet Connection..."
+
+msgid "internet_skip_button_label"
+msgstr "Skip"
+
+msgid "internet_next_button_label"
+msgstr "Next"
+
+msgid "first_setup_internet_button_content_text_label"
+msgstr "Set up a network connection and a proxy/VPN."
+
+msgid "first_setup_internet_button_content_label"
+msgstr "Open Network Settings."
+
+msgid "first_setup_internet_skip_dialog_heading"
+msgstr "Skip Network Setup?"
+
+msgid "first_setup_internet_skip_dialog_body"
+msgstr "Skipping Network Setup will make many of the next steps unavailable!\nThis is NOT recommended."
+
+msgid "first_setup_internet_skip_dialog_skip_cancel_label"
+msgstr "Return to Network Setup"
+
+msgid "first_setup_internet_skip_dialog_skip_confirm_label"
+msgstr "Just Skip!"
+
+msgid "first_setup_internet_box_text_description_true"
+msgstr "Device connected to Internet Successfully!"
+
+msgid "first_setup_internet_box_text_description_false"
+msgstr "No internet Connection!"
+
+msgid "first_setup_update_box_text_title"
+msgstr "System Updates"
+
+msgid "first_setup_update_button_label"
+msgstr "Update"
+
+msgid "first_setup_update_skip_button_label"
+msgstr "Skip Updates"
+
+msgid "system_update_dialog_heading"
+msgstr "System Update Log"
+
+msgid "system_update_dialog_ok_label"
+msgstr "Ok"
+
+msgid "internet_network_disabled"
+msgstr "Disabled.. Network setup was skipped"
+
+msgid "system_update_dialog_success_true"
+msgstr "Update Completed Successfully!"
+
+msgid "system_update_dialog_success_false"
+msgstr "Update Failed!\nPlease try again."
+
+msgid "first_setup_user_box_text_title"
+msgstr "User setup"
+
+msgid "first_setup_user_box_text_description"
+msgstr "Create a user account."
+
+msgid "user_info_username_title"
+msgstr "Username:"
+
+msgid "user_info_full_name_title"
+msgstr "Full name:"
+
+msgid "user_info_password_title"
+msgstr "User password:"
+
+msgid "user_info_password_verify_title"
+msgstr "Enter User password again:"
+
+msgid "error_label_is_root_label"
+msgstr "Username can not be root."
+
+msgid "error_label_is_pikaos_label"
+msgstr "Username can not be pikaos."
+
+msgid "error_label_is_special_label"
+msgstr "Username can not contain special characters."
+
+msgid "error_label_password_mismatch_label"
+msgstr "Passwords do not match!"
+
+msgid "first_setup_gameutils_box_text_title"
+msgstr "PikaOS Gaming Meta Package"
+
+msgid "first_setup_gameutils_box_text_description"
+msgstr "Would you like the PikaOS Gaming Meta Package?\n(essential for gaming thus strongly recommended)"
+
+msgid "first_setup_gameutils_button_label"
+msgstr "Install Meta Package"
+
+msgid "first_setup_gameutils_skip_button_label"
+msgstr "Skip Meta Package Installation"
+
+msgid "gameutils_install_dialog_heading"
+msgstr "Meta Package installation Log"
+
+msgid "gameutils_install_dialog_success_true"
+msgstr "Meta Package installation Completed Successfully!"
+
+msgid "gameutils_install_dialog_success_false"
+msgstr "Meta Package installation Failed!\nPlease try again."
+
+msgid "first_setup_codec_box_text_title"
+msgstr "Multi-media Codecs"
+
+msgid "first_setup_codec_box_text_description"
+msgstr "Would you like to install additional video playback and encoding/decoding packages?\n(strongly recommended)"
+
+msgid "first_setup_codec_button_label"
+msgstr "Install Codecs"
+
+msgid "first_setup_codec_skip_button_label"
+msgstr "Skip Codec Installation"
+
+msgid "codec_install_dialog_heading"
+msgstr "Codec installation Log"
+
+msgid "codec_install_dialog_success_true"
+msgstr "Codec installation Completed Successfully!"
+
+msgid "codec_install_dialog_success_false"
+msgstr "Codec installation Failed!\nPlease try again."
+
+msgid "first_setup_driver_box_text_title"
+msgstr "Hardware Drivers"
+
+msgid "first_setup_driver_box_text_description"
+msgstr "You can install drivers such as the NVIDIA proprietary drivers and CPU microcode."
+
+msgid "first_setup_driver_button_label"
+msgstr "Open Driver manager"
+
+msgid "first_setup_driver_skip_button_label"
+msgstr "Skip Driver installation"

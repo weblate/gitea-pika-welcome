@@ -8,6 +8,8 @@ use glib::*;
 use gtk::prelude::*;
 use gtk::*;
 
+use gettextrs::gettext;
+
 //use crate::check_internet_connection;
 use gtk::gio::ffi::GAsyncReadyCallback;
 use gtk::pango::TextTransform::Capitalize;
@@ -58,8 +60,8 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         .build();
 
     let first_setup_user_box_text = adw::StatusPage::builder()
-        .title("User setup")
-        .description("Create a user account.")
+        .title(gettext("first_setup_user_box_text_title"))
+        .description(gettext("first_setup_user_box_text_description"))
         .hexpand(true)
         .valign(Align::Start)
         .build();
@@ -79,25 +81,25 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
 
     let user_info_username = adw::EntryRow::builder()
         .hexpand(true)
-        .title("Username:")
+        .title(gettext("user_info_username_title"))
         .input_purpose(InputPurpose::Alpha)
         .input_hints(InputHints::LOWERCASE)
         .build();
 
     let user_info_full_name = adw::EntryRow::builder()
         .hexpand(true)
-        .title("Full name:")
+        .title(gettext("user_info_full_name_title"))
         .input_purpose(InputPurpose::Name)
         .build();
 
     let user_info_password = adw::PasswordEntryRow::builder()
         .hexpand(true)
-        .title("User password:")
+        .title(gettext("user_info_password_title"))
         .build();
 
     let user_info_password_verify = adw::PasswordEntryRow::builder()
         .hexpand(true)
-        .title("Enter User password again:")
+        .title(gettext("user_info_password_verify_title"))
         .build();
 
     let user_info_password_verify_revealer = gtk::Revealer::builder()
@@ -134,13 +136,12 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         .margin_start(15)
         .margin_end(15)
         .visible(false)
-        .label("NULL")
         .build();
 
     error_label.add_css_class("red-text");
 
     let user_next_button = gtk::Button::builder()
-        .label("Next")
+        .label(gettext("internet_next_button_label"))
         .sensitive(false)
         .halign(Align::Center)
         .valign(Align::End)
@@ -200,21 +201,21 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         if user_info_username_string != "root" {
             username_is_root=false;
         } else {
-            error_label.set_label("Username can not be root.");
+            error_label.set_label(&gettext("error_label_is_root_label"));
             username_is_root=true;
         }
 
         if user_info_username_string != "pikaos" {
             username_is_pikaos=false;
         } else {
-            error_label.set_label("Username can not be pikaos.");
+            error_label.set_label(&gettext("error_label_is_pikaos_label"));
             username_is_pikaos=true;
         }
 
         if only_alphanumeric(&user_info_username_string) {
             username_is_special=false;
         } else {
-            error_label.set_label("Username can not contain special characters.");
+            error_label.set_label(&gettext("error_label_is_special_label"));
             username_is_special=true;
         }
 
@@ -265,7 +266,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
             *user_info_passwords_valid.borrow_mut()=true;
         } else {
             error_label.set_visible(true);
-            error_label.set_label("Passwords do not match!");
+            error_label.set_label(&gettext("error_label_password_mismatch_label"));
             *user_info_passwords_valid.borrow_mut()=false;
         }
     }));

@@ -13,6 +13,8 @@ use gtk::*;
 use vte::prelude::*;
 use vte::*;
 
+use gettextrs::gettext;
+
 use std::{thread, time};
 
 use std::{
@@ -53,13 +55,13 @@ pub fn driver_carousel(
 
     let first_setup_driver_box_text = adw::StatusPage::builder()
         .icon_name("audio-card")
-        .title("Hardware Drivers")
-        .description("You can install drivers such as the NVIDIA proprietary drivers and CPU microcode.")
+        .title(gettext("first_setup_driver_box_text_title"))
+        .description(gettext("first_setup_driver_box_text_description"))
         .build();
     first_setup_driver_box_text.add_css_class("compact");
 
     let first_setup_driver_button = gtk::Button::builder()
-        .label("Open Driver manager")
+        .label(gettext("first_setup_driver_button_label"))
         .sensitive(false)
         .build();
 
@@ -67,7 +69,7 @@ pub fn driver_carousel(
     first_setup_driver_button.add_css_class("pill");
 
     let first_setup_driver_skip_button = gtk::Button::builder()
-        .label("Skip Driver installation")
+        .label(gettext("first_setup_driver_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -102,10 +104,10 @@ pub fn driver_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_driver_button.set_sensitive(true);
-                    first_setup_driver_button.set_label("Open Driver manager");
+                    first_setup_driver_button.set_label(&gettext("first_setup_driver_button_label"));
                 } else {
                     first_setup_driver_button.set_sensitive(false);
-                    first_setup_driver_button.set_label("Disabled.. Network setup was skipped");
+                    first_setup_driver_button.set_label(&gettext("internet_network_disabled"));
                 }
             }
         }),
@@ -116,7 +118,7 @@ pub fn driver_carousel(
             .spawn()
             .expect("pika-drivers failed to start");
         first_setup_driver_button.remove_css_class("suggested-action");
-        first_setup_driver_skip_button.set_label("Next");
+        first_setup_driver_skip_button.set_label(&gettext("internet_next_button_label"));
         first_setup_driver_skip_button.add_css_class("suggested-action");
     }));
 

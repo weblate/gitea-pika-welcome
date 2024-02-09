@@ -13,6 +13,8 @@ use gtk::*;
 use vte::prelude::*;
 use vte::*;
 
+use gettextrs::gettext;
+
 use std::{thread, time};
 
 use std::{
@@ -84,13 +86,13 @@ pub fn codec_carousel(
 
     let first_setup_codec_box_text = adw::StatusPage::builder()
         .icon_name("media-tape")
-        .title("Multi-media Codecs")
-        .description("Would you like to install additional video playback and encoding/decoding packages?\n(strongly recommended)")
+        .title(gettext("first_setup_codec_box_text_title"))
+        .description(gettext("first_setup_codec_box_text_description"))
         .build();
     first_setup_codec_box_text.add_css_class("compact");
 
     let first_setup_codec_button = gtk::Button::builder()
-        .label("Install Codecs")
+        .label(gettext("first_setup_codec_button_label"))
         .sensitive(false)
         .build();
 
@@ -98,7 +100,7 @@ pub fn codec_carousel(
     first_setup_codec_button.add_css_class("pill");
 
     let first_setup_codec_skip_button = gtk::Button::builder()
-        .label("Skip Codec Installation")
+        .label(gettext("first_setup_codec_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -141,9 +143,9 @@ pub fn codec_carousel(
         .extra_child(&codec_install_log_terminal_scroll)
         .width_request(400)
         .height_request(200)
-        .heading("Codec installation Log")
+        .heading(gettext("codec_install_dialog_heading"))
         .build();
-    codec_install_dialog.add_response("codec_install_dialog_ok", "Ok");
+    codec_install_dialog.add_response("codec_install_dialog_ok", &gettext("system_update_dialog_ok_label"));
 
     first_setup_codec_buttons_box.append(&first_setup_codec_button);
     first_setup_codec_buttons_box.append(&first_setup_codec_skip_button);
@@ -160,10 +162,10 @@ pub fn codec_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_codec_button.set_sensitive(true);
-                    first_setup_codec_button.set_label("Install Codecs");
+                    first_setup_codec_button.set_label(&gettext("first_setup_codec_button_label"));
                 } else {
                     first_setup_codec_button.set_sensitive(false);
-                    first_setup_codec_button.set_label("Disabled.. Network setup was skipped");
+                    first_setup_codec_button.set_label(&gettext("internet_network_disabled"));
                 }
             }
         }),
@@ -183,16 +185,16 @@ pub fn codec_carousel(
             while let Ok(state) = log_status_loop_receiver.recv().await {
                 if state == true {
                     codec_install_dialog.set_response_enabled("codec_install_dialog_ok", true);
-                    codec_install_dialog.set_body("Codec installation Completed Successfully!");
+                    codec_install_dialog.set_body(&gettext("codec_install_dialog_success_true"));
                     first_setup_codec_button.remove_css_class("suggested-action");
-                    first_setup_codec_skip_button.set_label("Next");
+                    first_setup_codec_skip_button.set_label(&gettext("internet_next_button_label"));
                     first_setup_codec_skip_button.add_css_class("suggested-action");
                 } else {
                     first_setup_codec_skip_button.remove_css_class("suggested-action");
-                    first_setup_codec_skip_button.set_label("Skip Codec Installation");
+                    first_setup_codec_skip_button.set_label(&gettext("first_setup_codec_skip_button_label"));
                     first_setup_codec_button.add_css_class("suggested-action");
                     codec_install_dialog.set_response_enabled("codec_install_dialog_ok", true);
-                    codec_install_dialog.set_body("Codec installation Failed!\nPlease try again.");
+                    codec_install_dialog.set_body(&gettext("codec_install_dialog_success_false"));
                 }
             }
     }));

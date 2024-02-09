@@ -1,4 +1,6 @@
 // GTK crates
+mod config;
+
 use adw::prelude::*;
 use adw::*;
 use gdk::Display;
@@ -7,6 +9,9 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::prelude::*;
 use gtk::*;
+
+use gettextrs::{gettext, LocaleCategory};
+use config::{GETTEXT_PACKAGE, LOCALEDIR, APP_ID};
 
 // application crates
 mod build_ui;
@@ -21,7 +26,7 @@ mod first_setup;
 /// main function
 fn main() {
     let application = adw::Application::new(
-        Some("com.github.pikaos-linux.pikafirstsetup"),
+        Some(APP_ID),
         Default::default(),
     );
     application.connect_startup(|app| {
@@ -35,6 +40,10 @@ fn main() {
             &provider,
             STYLE_PROVIDER_PRIORITY_APPLICATION,
         );
+        // Prepare i18n
+        gettextrs::setlocale(LocaleCategory::LcAll, "");
+        gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
+        gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
 
         app.connect_activate(build_ui);
     });

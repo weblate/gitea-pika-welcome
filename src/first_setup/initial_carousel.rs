@@ -8,6 +8,8 @@ use glib::*;
 use gtk::prelude::*;
 use gtk::*;
 
+use gettextrs::gettext;
+
 pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
     let first_setup_initial_box = gtk::Box::builder()
         // that puts items vertically
@@ -20,13 +22,13 @@ pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
 
     let first_setup_initial_box_text = adw::StatusPage::builder()
         .icon_name("debian-swirl")
-        .title("Welcome")
-        .description("This wizard will help you finish your PikaOS installation.")
+        .title(gettext("first_setup_initial_box_text_title"))
+        .description(gettext("first_setup_initial_box_text_description"))
         .build();
     first_setup_initial_box_text.add_css_class("compact");
 
     let first_setup_start_button = gtk::Button::builder()
-        .label("Let's Start")
+        .label(gettext("first_setup_start_button_label"))
         .halign(Align::Center)
         .build();
 

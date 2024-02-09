@@ -9,6 +9,8 @@ use glib::*;
 use gtk::prelude::*;
 use gtk::*;
 
+use gettextrs::gettext;
+
 //
 use crate::connection_check::check_internet_connection;
 use std::cell::RefCell;
@@ -37,7 +39,7 @@ pub fn first_setup(window: &adw::ApplicationWindow) {
         .carousel(&first_setup_carousel)
         .build();
 
-    let first_setup_window_headerbar_back_button = gtk::Button::builder().label("Back").build();
+    let first_setup_window_headerbar_back_button = gtk::Button::builder().label(gettext("first_setup_window_headerbar_back_button_label")).build();
 
     let first_setup_window_headerbar = adw::HeaderBar::builder()
         .show_start_title_buttons(true)

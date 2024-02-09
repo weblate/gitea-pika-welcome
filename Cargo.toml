@@ -13,3 +13,4 @@ regex = "1.10.3"
 gettext-rs = { version = "0.7", features = ["gettext-system"] }
 duct = "0.13.7"
 os_pipe = "1.1.5"
+user = "0.1.1"

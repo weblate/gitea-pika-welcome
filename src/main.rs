@@ -14,8 +14,6 @@ use config::{GETTEXT_PACKAGE, LOCALEDIR, APP_ID};
 // application crates
 mod build_ui;
 use crate::build_ui::build_ui;
-mod save_window_size;
-use crate::save_window_size::save_window_size;
 /// first setup crates
 mod first_setup;
 

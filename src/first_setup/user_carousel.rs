@@ -1,25 +1,18 @@
 // GTK crates
 use adw::prelude::*;
 use adw::*;
-use gdk::Display;
 use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
 use gtk::*;
 
 use gettextrs::gettext;
 
-//use crate::check_internet_connection;
-use gtk::gio::ffi::GAsyncReadyCallback;
-use gtk::pango::TextTransform::Capitalize;
-use gtk::Align::Center;
+//
 use regex::Regex;
-use std::borrow::Borrow as the_rc_borrow;
 use std::cell::RefCell;
-use std::process::Command;
 use std::rc::Rc;
-use std::{env, thread, time};
+use std::{thread, time};
 use duct::cmd;
 
 const USER_CREATE_PROG: &str = r###"
@@ -288,7 +281,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     }));
 
     user_next_button.connect_clicked(clone!(@weak first_setup_carousel, @weak user_info_username, @weak user_info_password, @weak user_info_full_name => move |_| {
-        cmd!("sudo", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
+        let _ = cmd!("sudo", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(3), true);
     }));
 }

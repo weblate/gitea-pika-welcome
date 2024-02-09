@@ -1,13 +1,7 @@
 // GTK crates
-use adw::ffi::{AdwToolbarStyle, ADW_TOOLBAR_FLAT};
 use adw::prelude::*;
 use adw::*;
-use gdk::Display;
 use glib::*;
-/// Use all gtk4 libraries (gtk4 -> gtk because cargo)
-/// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
-use gtk::*;
 
 // application crates
 /// first setup crates

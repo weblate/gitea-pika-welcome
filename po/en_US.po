@@ -167,3 +167,12 @@ msgstr "Open Driver manager"
 
 msgid "first_setup_driver_skip_button_label"
 msgstr "Skip Driver installation"
+
+msgid "first_setup_final_box_text_title"
+msgstr "Initial Setup Complete!"
+
+msgid "first_setup_final_box_text_description"
+msgstr "PikaOS initial post install setup has been completed.\nReboot one last time to enter your new user session."
+
+msgid "first_setup_reboot_button_label"
+msgstr "Reboot"

@@ -1,18 +1,14 @@
 // GTK crates
 use adw::prelude::*;
 use adw::*;
-use gdk::Display;
 use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
 use gtk::*;
 
 use gettextrs::gettext;
 
 //use crate::check_internet_connection;
-use gtk::gio::ffi::GAsyncReadyCallback;
-use std::borrow::Borrow as the_rc_borrow;
 use std::cell::RefCell;
 use std::env;
 use std::process::Command;

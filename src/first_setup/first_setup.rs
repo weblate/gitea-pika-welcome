@@ -1,18 +1,13 @@
 // GTK crates
-use adw::ffi::ADW_TOOLBAR_FLAT;
 use adw::prelude::*;
 use adw::*;
-use gdk::Display;
 use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
-use gtk::*;
 
 use gettextrs::gettext;
 
 //
-use crate::connection_check::check_internet_connection;
 use std::cell::RefCell;
 use std::rc::Rc;
 
@@ -24,6 +19,7 @@ use crate::first_setup::user_carousel::user_carousel;
 use crate::first_setup::driver_carousel::driver_carousel;
 use crate::first_setup::codec_carousel::codec_carousel;
 use crate::first_setup::gameutils_carousel::gameutils_carousel;
+use crate::first_setup::final_carousel::final_carousel;
 
 pub fn first_setup(window: &adw::ApplicationWindow) {
     let first_setup_carousel = adw::Carousel::builder()
@@ -71,6 +67,7 @@ pub fn first_setup(window: &adw::ApplicationWindow) {
     driver_carousel(&first_setup_carousel, &internet_connected);
     codec_carousel(&first_setup_carousel, &internet_connected, &window);
     gameutils_carousel(&first_setup_carousel, &internet_connected, &window);
+    final_carousel(&first_setup_carousel);
 
     // Add file to window
     window.set_content(Some(&first_setup_window_toolbarview))

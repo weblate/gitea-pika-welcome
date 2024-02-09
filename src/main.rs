@@ -4,10 +4,8 @@ mod config;
 use adw::prelude::*;
 use adw::*;
 use gdk::Display;
-use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
 use gtk::*;
 
 use gettextrs::{gettext, LocaleCategory};
@@ -18,8 +16,6 @@ mod build_ui;
 use crate::build_ui::build_ui;
 mod save_window_size;
 use crate::save_window_size::save_window_size;
-mod connection_check;
-use crate::connection_check::check_internet_connection;
 /// first setup crates
 mod first_setup;
 

@@ -6,3 +6,4 @@ pub mod user_carousel;
 pub mod driver_carousel;
 pub mod codec_carousel;
 pub mod gameutils_carousel;
+pub mod final_carousel;

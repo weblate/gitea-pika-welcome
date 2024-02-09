@@ -1,33 +1,20 @@
 use std::cell::RefCell;
 use std::rc::Rc;
 // GTK crates
-use adw::ffi::ADW_TOOLBAR_FLAT;
 use adw::prelude::*;
 use adw::*;
-use gdk::Display;
 use glib::*;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
-use gtk::prelude::*;
 use gtk::*;
-use vte::prelude::*;
-use vte::*;
 
 use gettextrs::gettext;
 
 use std::{thread, time};
 
 use std::{
-    error::Error,
-    io::Error as ErrorIO,
-    io::{ErrorKind, Read, Write},
-    process::{Command, Stdio},
+    process::{Command},
 };
-
-use duct::cmd;
-use os_pipe::*;
-use std::io::prelude::*;
-use std::io::BufReader;
 
 pub fn driver_carousel(
     first_setup_carousel: &adw::Carousel,

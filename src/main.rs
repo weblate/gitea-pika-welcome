@@ -44,6 +44,11 @@ fn main() {
         gettextrs::setlocale(LocaleCategory::LcAll, "");
         gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
         gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
+        // Fallback if no translation present
+        if gettext("first_setup_initial_box_text_title") == "first_setup_initial_box_text_title" {
+            println!("Warning: Current LANG is not supported, using fallback Locale.");
+            gettextrs::setlocale(LocaleCategory::LcAll, "en_US.UTF8");
+        }
 
         app.connect_activate(build_ui);
     });

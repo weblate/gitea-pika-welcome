@@ -20,6 +20,22 @@ use std::cell::RefCell;
 use std::process::Command;
 use std::rc::Rc;
 use std::{env, thread, time};
+use duct::cmd;
+
+const USER_CREATE_PROG: &str = r###"
+#! /bin/bash
+USERNAME="$0"
+PASSWORD="$1"
+FULLNAME="$2"
+adduser --quiet --disabled-password --shell /bin/bash --gecos "${FULLNAME}" "${USERNAME}"
+echo "${USERNAME}":"${PASSWORD}" | sudo chpasswd
+usermod -a -G sudo "${USERNAME}"
+mkdir -p /home/"${USERNAME}"
+cp -rvf /etc/skel/.* /home/"${USERNAME}"/ || true
+chown -R "${USERNAME}":"${USERNAME}" /home/"${USERNAME}"
+usermod -a -G adm,cdrom,sudo,render,dip,video,plugdev,input,render,lpadmin "${USERNAME}"
+rm -rf /etc/sddm.conf.d/zautologin.conf || true
+"###;
 
 fn only_alphanumeric(input: &str) -> bool {
     return input.chars().all(|c| c.is_alphanumeric());
@@ -271,7 +287,8 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         }
     }));
 
-    user_next_button.connect_clicked(clone!(@weak first_setup_carousel => move |_| {
+    user_next_button.connect_clicked(clone!(@weak first_setup_carousel, @weak user_info_username, @weak user_info_password, @weak user_info_full_name => move |_| {
+        cmd!("sudo", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(3), true);
     }));
 }

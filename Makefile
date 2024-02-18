@@ -1,3 +1,5 @@
+export PATH := $(PWD):$(PATH)
+
 all:
 	true
 

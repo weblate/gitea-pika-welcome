@@ -21,12 +21,12 @@ USERNAME="$0"
 PASSWORD="$1"
 FULLNAME="$2"
 adduser --quiet --disabled-password --shell /bin/bash --gecos "${FULLNAME}" "${USERNAME}"
-echo "${USERNAME}":"${PASSWORD}" | /usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh chpasswd
-usermod -a -G /usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh "${USERNAME}"
+echo "${USERNAME}":"${PASSWORD}" | chpasswd
+usermod -a -G sudo "${USERNAME}"
 mkdir -p /home/"${USERNAME}"
 cp -rvf /etc/skel/.* /home/"${USERNAME}"/ || true
 chown -R "${USERNAME}":"${USERNAME}" /home/"${USERNAME}"
-usermod -a -G adm,cdrom,/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh,render,dip,video,plugdev,input,render,lpadmin "${USERNAME}"
+usermod -a -G adm,cdrom,sudo,render,dip,video,plugdev,input,render,lpadmin "${USERNAME}"
 rm -rf /etc/sddm.conf.d/zautologin.conf || true
 "###;
 
@@ -281,7 +281,8 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     }));
 
     user_next_button.connect_clicked(clone!(@weak first_setup_carousel, @weak user_info_username, @weak user_info_password, @weak user_info_full_name => move |_| {
-        let _ = cmd!("/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
+        let result cmd!("/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
+        assert!(result.is_ok());
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(3), true);
     }));
 }

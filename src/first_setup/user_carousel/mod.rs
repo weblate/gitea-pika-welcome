@@ -203,32 +203,32 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
             user_info_username.set_position(-1);
         }
 
-        let mut username_is_root = false;
-        let mut username_is_pikaos = false;
-        let mut username_is_special = false;
+        let mut _username_is_root = false;
+        let mut _username_is_pikaos = false;
+        let mut _username_is_special = false;
 
         if user_info_username_string != "root" {
-            username_is_root=false;
+            _username_is_root=false;
         } else {
             error_label.set_label(&gettext("error_label_is_root_label"));
-            username_is_root=true;
+            _username_is_root=true;
         }
 
         if user_info_username_string != "pikaos" {
-            username_is_pikaos=false;
+            _username_is_pikaos=false;
         } else {
             error_label.set_label(&gettext("error_label_is_pikaos_label"));
-            username_is_pikaos=true;
+            _username_is_pikaos=true;
         }
 
         if only_alphanumeric(&user_info_username_string) {
-            username_is_special=false;
+            _username_is_special=false;
         } else {
             error_label.set_label(&gettext("error_label_is_special_label"));
-            username_is_special=true;
+            _username_is_special=true;
         }
 
-        if username_is_root == false && username_is_pikaos == false && username_is_special == false {
+        if _username_is_root == false && _username_is_pikaos == false && _username_is_special == false {
             error_label.set_visible(false);
             if !user_info_username.text().is_empty() {
                 *user_info_username_valid.borrow_mut()=true;

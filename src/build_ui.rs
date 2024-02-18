@@ -6,7 +6,7 @@ use adw::*;
 
 // application crates
 /// first setup crates
-use crate::first_setup::first_setup::first_setup;
+use crate::first_setup::*;
 
 pub fn build_ui(app: &adw::Application) {
     // setup glib

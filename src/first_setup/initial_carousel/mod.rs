@@ -7,6 +7,7 @@ use glib::*;
 use gtk::*;
 
 use gettextrs::gettext;
+use crate::config::{DISTRO_ICON};
 
 pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
     let first_setup_initial_box = gtk::Box::builder()
@@ -19,7 +20,7 @@ pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
         .build();
 
     let first_setup_initial_box_text = adw::StatusPage::builder()
-        .icon_name("debian-swirl")
+        .icon_name(DISTRO_ICON)
         .title(gettext("first_setup_initial_box_text_title"))
         .description(gettext("first_setup_initial_box_text_description"))
         .build();

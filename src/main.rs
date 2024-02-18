@@ -9,6 +9,7 @@ use gdk::Display;
 use gtk::*;
 
 use gettextrs::{gettext, LocaleCategory};
+use users::*;
 use config::{GETTEXT_PACKAGE, LOCALEDIR, APP_ID};
 
 // application crates
@@ -47,5 +48,11 @@ fn main() {
         app.connect_activate(build_ui);
     });
 
-    application.run();
+    if get_current_username().unwrap() == "pikaos" {
+        application.run();
+    } else {
+        println!("Error: This program can only be run via pikaos user");
+        std::process::exit(1)
+    }
+
 }

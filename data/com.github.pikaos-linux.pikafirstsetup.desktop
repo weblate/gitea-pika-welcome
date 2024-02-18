@@ -1,10 +1,11 @@
 [Desktop Entry]
-Name=PikaOS First Setup
-Name[en_US]=PikaOS First Setup
-Exec=pika-first-setup
-Icon=com.github.pikaos-linux.pikafirstsetup
-Terminal=false
 Type=Application
-Encoding=UTF-8
+Name=PikaOS Initial User Setup
+Exec=pika-first-setup-gtk4
+Hidden=false
 NoDisplay=true
-StartupNotify=true
+Icon=com.github.pikaos-linux.pikafirstsetup
+X-GNOME-Autostart-enabled=true
+X-KDE-AutostartScript=true
+Categories=GNOME;GTK;Utility;
+Keywords=Gnome;GTK

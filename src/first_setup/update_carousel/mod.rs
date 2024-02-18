@@ -23,7 +23,7 @@ use std::io::BufReader;
 const APT_UPDATE_PROG: &str = "
 #! /bin/bash
 set -e
-sudo apt update -y && sudo apt full-upgrade -y
+/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt update -y && /usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt full-upgrade -y
 ";
 
 fn apt_update(

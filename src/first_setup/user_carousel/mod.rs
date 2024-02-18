@@ -281,7 +281,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     }));
 
     user_next_button.connect_clicked(clone!(@weak first_setup_carousel, @weak user_info_username, @weak user_info_password, @weak user_info_full_name => move |_| {
-        let result cmd!("/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
+        let result = cmd!("/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh", "bash", "-c", USER_CREATE_PROG, &user_info_username.text(), &user_info_password.text(), &user_info_full_name.text()).read();
         assert!(result.is_ok());
         first_setup_carousel.scroll_to(&first_setup_carousel.nth_page(3), true);
     }));

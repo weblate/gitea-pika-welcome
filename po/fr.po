@@ -2,96 +2,126 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2024-02-09 17:48+0300\n"
-"PO-Revision-Date: 2024-02-09 17:55+0300\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-02-19 23:08+0000\n"
+"Last-Translator: piaf <jujuf851@hotmail.com>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/pikaos/"
+"gui-applications/pika-first-setup/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Poedit-Basepath: .\n"
 
+#, fuzzy
 msgid "first_setup_initial_box_text_title"
-msgstr ""
+msgstr "Bienvenue"
 
+#, fuzzy
 msgid "first_setup_initial_box_text_description"
-msgstr ""
+msgstr "Cet assistant vous aidera à terminer l'installation de PikaOS"
 
 msgid "first_setup_start_button_label"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_window_headerbar_back_button_label"
-msgstr ""
+msgstr "Retour"
 
+#, fuzzy
 msgid "first_setup_internet_box_text_title"
-msgstr ""
+msgstr "Internet"
 
+#, fuzzy
 msgid "first_setup_internet_box_text_description"
-msgstr ""
+msgstr "Vérification de la connexion Internet..."
 
+#, fuzzy
 msgid "internet_skip_button_label"
-msgstr ""
+msgstr "Ignorer"
 
+#, fuzzy
 msgid "internet_next_button_label"
-msgstr ""
+msgstr "Suivant"
 
+#, fuzzy
 msgid "first_setup_internet_button_content_text_label"
-msgstr ""
+msgstr "Établir une connexion réseau et un proxy/VPN"
 
+#, fuzzy
 msgid "first_setup_internet_button_content_label"
-msgstr ""
+msgstr "Ouvrir les paramètres réseau"
 
+#, fuzzy
 msgid "first_setup_internet_skip_dialog_heading"
-msgstr ""
+msgstr "Passer la configuration du réseau ?"
 
+#, fuzzy
 msgid "first_setup_internet_skip_dialog_body"
 msgstr ""
+"Si vous sautez l'étape de l'installation du réseau, la plupart des étapes "
+"suivantes ne seront pas disponibles !\n"
+"Ceci n'est PAS recommandé"
 
+#, fuzzy
 msgid "first_setup_internet_skip_dialog_skip_cancel_label"
-msgstr ""
+msgstr "Retour à la configuration du réseau"
 
 msgid "first_setup_internet_skip_dialog_skip_confirm_label"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_internet_box_text_description_true"
-msgstr ""
+msgstr "L'appareil s'est connecté à Internet avec succès !"
 
+#, fuzzy
 msgid "first_setup_internet_box_text_description_false"
-msgstr ""
+msgstr "Pas de connexion internet !"
 
+#, fuzzy
 msgid "first_setup_update_box_text_title"
-msgstr ""
+msgstr "Mises à jour du système"
 
+#, fuzzy
 msgid "first_setup_update_button_label"
-msgstr ""
+msgstr "Mettre à jour"
 
+#, fuzzy
 msgid "first_setup_update_skip_button_label"
-msgstr ""
+msgstr "Ignorer les mises à jour"
 
+#, fuzzy
 msgid "system_update_dialog_heading"
-msgstr ""
+msgstr "Journal des mises à jour du système"
 
 msgid "system_update_dialog_ok_label"
-msgstr ""
+msgstr "Ok"
 
+#, fuzzy
 msgid "internet_network_disabled"
-msgstr ""
+msgstr "Désactivé... La configuration du réseau a été ignorée"
 
+#, fuzzy
 msgid "system_update_dialog_success_true"
-msgstr ""
+msgstr "Mise à jour effectuée avec succès !"
 
+#, fuzzy
 msgid "system_update_dialog_success_false"
 msgstr ""
+"La mise à jour a échoué !\n"
+"Veuillez réessayer"
 
 msgid "first_setup_user_box_text_title"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_user_box_text_description"
-msgstr ""
+msgstr "Créer un compte utilisateur"
 
+#, fuzzy
 msgid "user_info_username_title"
-msgstr ""
+msgstr "Nom d'utilisateur:"
 
 msgid "user_info_full_name_title"
 msgstr ""
@@ -102,17 +132,21 @@ msgstr ""
 msgid "user_info_password_verify_title"
 msgstr ""
 
+#, fuzzy
 msgid "error_label_is_root_label"
-msgstr ""
+msgstr "Le nom d'utilisateur ne peut pas être \"root\"."
 
+#, fuzzy
 msgid "error_label_is_pikaos_label"
-msgstr ""
+msgstr "Le nom d'utilisateur ne peut pas être \"pikaos\"."
 
+#, fuzzy
 msgid "error_label_is_special_label"
-msgstr ""
+msgstr "Le nom d'utilisateur ne peut pas contenir de caractères spéciaux."
 
+#, fuzzy
 msgid "error_label_password_mismatch_label"
-msgstr ""
+msgstr "Les mots de passe ne correspondent pas !"
 
 msgid "first_setup_gameutils_box_text_title"
 msgstr ""
@@ -135,14 +169,20 @@ msgstr ""
 msgid "gameutils_install_dialog_success_false"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_codec_box_text_title"
-msgstr ""
+msgstr "Codecs multimédias"
 
+#, fuzzy
 msgid "first_setup_codec_box_text_description"
 msgstr ""
+"Souhaitez-vous installer d'autres logiciels de lecture vidéo et d'encodage/"
+"décodage ?\n"
+"(fortement recommandé)"
 
+#, fuzzy
 msgid "first_setup_codec_button_label"
-msgstr ""
+msgstr "Installer les codecs"
 
 msgid "first_setup_codec_skip_button_label"
 msgstr ""
@@ -159,8 +199,11 @@ msgstr ""
 msgid "first_setup_driver_box_text_title"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_driver_box_text_description"
 msgstr ""
+"Vous pouvez installer des pilotes tels que les pilotes propriétaires de "
+"NVIDIA et le microcode du processeur."
 
 msgid "first_setup_driver_button_label"
 msgstr ""
@@ -168,11 +211,13 @@ msgstr ""
 msgid "first_setup_driver_skip_button_label"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_final_box_text_title"
-msgstr ""
+msgstr "Installation initiale terminée !"
 
 msgid "first_setup_final_box_text_description"
 msgstr ""
 
+#, fuzzy
 msgid "first_setup_reboot_button_label"
-msgstr ""
+msgstr "Redémarrer"

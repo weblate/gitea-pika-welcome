@@ -2,177 +2,200 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2024-02-09 17:48+0300\n"
-"PO-Revision-Date: 2024-02-09 17:55+0300\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-02-19 13:04+0000\n"
+"Last-Translator: selektionsrest <selektionsrest@hotmail.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/pikaos/"
+"gui-applications/pika-first-setup/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.4\n"
 "X-Poedit-Basepath: .\n"
 
 msgid "first_setup_initial_box_text_title"
-msgstr ""
+msgstr "Willkommen"
 
 msgid "first_setup_initial_box_text_description"
 msgstr ""
+"Dieser Assistent wird dir dabei helfen deine PikaOS installation "
+"abzuschließen."
 
 msgid "first_setup_start_button_label"
-msgstr ""
+msgstr "Beginnen"
 
 msgid "first_setup_window_headerbar_back_button_label"
-msgstr ""
+msgstr "Zurück"
 
 msgid "first_setup_internet_box_text_title"
-msgstr ""
+msgstr "Internet"
 
 msgid "first_setup_internet_box_text_description"
-msgstr ""
+msgstr "Überprüfe die Internetverbindung..."
 
 msgid "internet_skip_button_label"
-msgstr ""
+msgstr "Überspringen"
 
 msgid "internet_next_button_label"
-msgstr ""
+msgstr "Weiter"
 
 msgid "first_setup_internet_button_content_text_label"
-msgstr ""
+msgstr "Richte eine Netzwerkverbindung und einen proxy/VPN ein."
 
 msgid "first_setup_internet_button_content_label"
-msgstr ""
+msgstr "Öffne Netzwerkeinstellungen."
 
 msgid "first_setup_internet_skip_dialog_heading"
-msgstr ""
+msgstr "Netzwerkeinrichtung überspringen?"
 
+#, fuzzy
 msgid "first_setup_internet_skip_dialog_body"
 msgstr ""
+"Wenn Sie die Netzwerkeinrichtung überspringen, sind viele der nächsten "
+"Schritte nicht verfügbar!\n"
+"Dies wird NICHT empfohlen."
 
 msgid "first_setup_internet_skip_dialog_skip_cancel_label"
-msgstr ""
+msgstr "Zurück zur Netzwerkeinrichtung"
 
 msgid "first_setup_internet_skip_dialog_skip_confirm_label"
-msgstr ""
+msgstr "Ja, überspringen!"
 
 msgid "first_setup_internet_box_text_description_true"
-msgstr ""
+msgstr "Gerät hat sich erfolgfreich mit dem Internet verbunden!"
 
 msgid "first_setup_internet_box_text_description_false"
-msgstr ""
+msgstr "Keine Internetverbindung!"
 
 msgid "first_setup_update_box_text_title"
-msgstr ""
+msgstr "System Updates"
 
 msgid "first_setup_update_button_label"
-msgstr ""
+msgstr "Update"
 
 msgid "first_setup_update_skip_button_label"
-msgstr ""
+msgstr "Updates überspringen"
 
 msgid "system_update_dialog_heading"
-msgstr ""
+msgstr "Systemaktualisierungsprotokoll"
 
 msgid "system_update_dialog_ok_label"
-msgstr ""
+msgstr "Ok"
 
 msgid "internet_network_disabled"
-msgstr ""
+msgstr "Deaktiviert. Die Netzwerkeinrichtung wurde übersprungen"
 
 msgid "system_update_dialog_success_true"
-msgstr ""
+msgstr "Update erfolgreich abgeschlossen!"
 
 msgid "system_update_dialog_success_false"
 msgstr ""
+"Update fehlgeschlagen!\n"
+"Bitte versuche es erneut."
 
 msgid "first_setup_user_box_text_title"
-msgstr ""
+msgstr "Benutzereinrichtung"
 
 msgid "first_setup_user_box_text_description"
-msgstr ""
+msgstr "Ein Benutzerkonto erstellen"
 
 msgid "user_info_username_title"
-msgstr ""
+msgstr "Benutzername:"
 
 msgid "user_info_full_name_title"
-msgstr ""
+msgstr "vollständiger Name:"
 
 msgid "user_info_password_title"
-msgstr ""
+msgstr "Benutzer Passwort:"
 
 msgid "user_info_password_verify_title"
-msgstr ""
+msgstr "Geben Sie das Benutzerpasswort erneut ein:"
 
 msgid "error_label_is_root_label"
-msgstr ""
+msgstr "Der Benutzername darf nicht root sein."
 
 msgid "error_label_is_pikaos_label"
-msgstr ""
+msgstr "Der Benutzername darf nicht pikaos sein."
 
 msgid "error_label_is_special_label"
-msgstr ""
+msgstr "Der Benutzername darf keine Sonderzeichen enthalten."
 
 msgid "error_label_password_mismatch_label"
-msgstr ""
+msgstr "Passwörter stimmen nicht überein!"
 
 msgid "first_setup_gameutils_box_text_title"
-msgstr ""
+msgstr "PikaOS Gaming Meta-Paket"
 
 msgid "first_setup_gameutils_box_text_description"
 msgstr ""
+"Möchten Sie das PikaOS Gaming Meta-Paket?\n"
+"(unverzichtbar für Spiele, daher dringend empfohlen)"
 
 msgid "first_setup_gameutils_button_label"
-msgstr ""
+msgstr "Gaming Meta-Paket installieren"
 
 msgid "first_setup_gameutils_skip_button_label"
-msgstr ""
+msgstr "Überspringe die Gaming Meta-Paket Installation"
 
 msgid "gameutils_install_dialog_heading"
-msgstr ""
+msgstr "Gaming Meta-Paket Installationsprotokoll"
 
 msgid "gameutils_install_dialog_success_true"
-msgstr ""
+msgstr "Gaming Meta-Paket Installation erfolgreich abgeschlossen!"
 
 msgid "gameutils_install_dialog_success_false"
 msgstr ""
+"Installation des Gaming-Meta-Pakets fehlgeschlagen!\n"
+"Bitte versuche es erneut."
 
 msgid "first_setup_codec_box_text_title"
-msgstr ""
+msgstr "Multimedia-Codecs"
 
 msgid "first_setup_codec_box_text_description"
 msgstr ""
+"Möchten Sie zusätzliche Videowiedergabe- und Kodierungs-/Dekodierungspakete "
+"installieren?\n"
+"(wärmstens empfohlen)"
 
 msgid "first_setup_codec_button_label"
-msgstr ""
+msgstr "Codecs installieren"
 
 msgid "first_setup_codec_skip_button_label"
-msgstr ""
+msgstr "Codec Installation überspringen"
 
 msgid "codec_install_dialog_heading"
-msgstr ""
+msgstr "Codec-Installationsprotokoll"
 
 msgid "codec_install_dialog_success_true"
-msgstr ""
+msgstr "Codec-Installation erfolgreich abgeschlossen!"
 
 msgid "codec_install_dialog_success_false"
 msgstr ""
+"Codec-Installation fehlgeschlagen!\n"
+"Bitte versuche es erneut."
 
 msgid "first_setup_driver_box_text_title"
-msgstr ""
+msgstr "Hardwaretreiber"
 
 msgid "first_setup_driver_box_text_description"
 msgstr ""
+"Sie können Treiber wie die proprietären NVIDIA-Treiber und CPU-Mikrocode "
+"installieren."
 
 msgid "first_setup_driver_button_label"
-msgstr ""
+msgstr "Öffne den Treibermanager"
 
 msgid "first_setup_driver_skip_button_label"
-msgstr ""
+msgstr "Treiberinstallation überspringen"
 
 msgid "first_setup_final_box_text_title"
-msgstr ""
+msgstr "Ersteinrichtung abgeschlossen!"
 
 msgid "first_setup_final_box_text_description"
 msgstr ""
+"Die Ersteinrichtung nach der Installation von PikaOS ist abgeschlossen.\n"
+"Starten Sie ein letztes Mal neu, um Ihre neue Benutzersitzung aufzurufen."
 
 msgid "first_setup_reboot_button_label"
-msgstr ""
+msgstr "Neu starten"

@@ -6,8 +6,6 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
-
 //
 use regex::Regex;
 use std::cell::RefCell;
@@ -69,8 +67,8 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         .build();
 
     let first_setup_user_box_text = adw::StatusPage::builder()
-        .title(gettext("first_setup_user_box_text_title"))
-        .description(gettext("first_setup_user_box_text_description"))
+        .title(t!("first_setup_user_box_text_title"))
+        .description(t!("first_setup_user_box_text_description"))
         .hexpand(true)
         .valign(Align::Start)
         .build();
@@ -90,25 +88,25 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
 
     let user_info_username = adw::EntryRow::builder()
         .hexpand(true)
-        .title(gettext("user_info_username_title"))
+        .title(t!("user_info_username_title"))
         .input_purpose(InputPurpose::Alpha)
         .input_hints(InputHints::LOWERCASE)
         .build();
 
     let user_info_full_name = adw::EntryRow::builder()
         .hexpand(true)
-        .title(gettext("user_info_full_name_title"))
+        .title(t!("user_info_full_name_title"))
         .input_purpose(InputPurpose::Name)
         .build();
 
     let user_info_password = adw::PasswordEntryRow::builder()
         .hexpand(true)
-        .title(gettext("user_info_password_title"))
+        .title(t!("user_info_password_title"))
         .build();
 
     let user_info_password_verify = adw::PasswordEntryRow::builder()
         .hexpand(true)
-        .title(gettext("user_info_password_verify_title"))
+        .title(t!("user_info_password_verify_title"))
         .build();
 
     let user_info_password_verify_revealer = gtk::Revealer::builder()
@@ -150,7 +148,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
     error_label.add_css_class("red-text");
 
     let user_next_button = gtk::Button::builder()
-        .label(gettext("internet_next_button_label"))
+        .label(t!("internet_next_button_label"))
         .sensitive(false)
         .halign(Align::Center)
         .valign(Align::End)
@@ -210,21 +208,21 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
         if user_info_username_string != "root" {
             _username_is_root=false;
         } else {
-            error_label.set_label(&gettext("error_label_is_root_label"));
+            error_label.set_label(&t!("error_label_is_root_label"));
             _username_is_root=true;
         }
 
         if user_info_username_string != "pikaos" {
             _username_is_pikaos=false;
         } else {
-            error_label.set_label(&gettext("error_label_is_pikaos_label"));
+            error_label.set_label(&t!("error_label_is_pikaos_label"));
             _username_is_pikaos=true;
         }
 
         if only_alphanumeric(&user_info_username_string) {
             _username_is_special=false;
         } else {
-            error_label.set_label(&gettext("error_label_is_special_label"));
+            error_label.set_label(&t!("error_label_is_special_label"));
             _username_is_special=true;
         }
 
@@ -275,7 +273,7 @@ pub fn user_carousel(first_setup_carousel: &adw::Carousel) {
             *user_info_passwords_valid.borrow_mut()=true;
         } else {
             error_label.set_visible(true);
-            error_label.set_label(&gettext("error_label_password_mismatch_label"));
+            error_label.set_label(&t!("error_label_password_mismatch_label"));
             *user_info_passwords_valid.borrow_mut()=false;
         }
     }));

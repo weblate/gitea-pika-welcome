@@ -8,7 +8,7 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
+
 
 use std::{thread, time};
 
@@ -77,13 +77,13 @@ pub fn gameutils_carousel(
 
     let first_setup_gameutils_box_text = adw::StatusPage::builder()
         .icon_name("input-gaming")
-        .title(gettext("first_setup_gameutils_box_text_title"))
-        .description(gettext("first_setup_gameutils_box_text_description"))
+        .title(t!("first_setup_gameutils_box_text_title"))
+        .description(t!("first_setup_gameutils_box_text_description"))
         .build();
     first_setup_gameutils_box_text.add_css_class("compact");
 
     let first_setup_gameutils_button = gtk::Button::builder()
-        .label(gettext("first_setup_gameutils_button_label"))
+        .label(t!("first_setup_gameutils_button_label"))
         .sensitive(false)
         .build();
 
@@ -91,7 +91,7 @@ pub fn gameutils_carousel(
     first_setup_gameutils_button.add_css_class("pill");
 
     let first_setup_gameutils_skip_button = gtk::Button::builder()
-        .label(gettext("first_setup_gameutils_skip_button_label"))
+        .label(t!("first_setup_gameutils_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -134,9 +134,9 @@ pub fn gameutils_carousel(
         .extra_child(&gameutils_install_log_terminal_scroll)
         .width_request(400)
         .height_request(200)
-        .heading(gettext("gameutils_install_dialog_heading"))
+        .heading(t!("gameutils_install_dialog_heading"))
         .build();
-    gameutils_install_dialog.add_response("gameutils_install_dialog_ok", &gettext("system_update_dialog_ok_label"));
+    gameutils_install_dialog.add_response("gameutils_install_dialog_ok", &t!("system_update_dialog_ok_label"));
 
     first_setup_gameutils_buttons_box.append(&first_setup_gameutils_button);
     first_setup_gameutils_buttons_box.append(&first_setup_gameutils_skip_button);
@@ -153,10 +153,10 @@ pub fn gameutils_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_gameutils_button.set_sensitive(true);
-                    first_setup_gameutils_button.set_label(&gettext("first_setup_gameutils_button_label"));
+                    first_setup_gameutils_button.set_label(&t!("first_setup_gameutils_button_label"));
                 } else {
                     first_setup_gameutils_button.set_sensitive(false);
-                    first_setup_gameutils_button.set_label(&gettext("internet_network_disabled"));
+                    first_setup_gameutils_button.set_label(&t!("internet_network_disabled"));
                 }
             }
         }),
@@ -176,7 +176,7 @@ pub fn gameutils_carousel(
             while let Ok(state) = log_status_loop_receiver.recv().await {
                 if state == true {
                     gameutils_install_dialog.set_response_enabled("gameutils_install_dialog_ok", true);
-                    gameutils_install_dialog.set_body(&gettext("gameutils_install_dialog_success_true"));
+                    gameutils_install_dialog.set_body(&t!("gameutils_install_dialog_success_true"));
                     first_setup_gameutils_button.remove_css_class("suggested-action");
                     first_setup_gameutils_skip_button.set_label("Next");
                     first_setup_gameutils_skip_button.add_css_class("suggested-action");
@@ -185,7 +185,7 @@ pub fn gameutils_carousel(
                     first_setup_gameutils_skip_button.set_label("Skip Meta Package Installation");
                     first_setup_gameutils_button.add_css_class("suggested-action");
                     gameutils_install_dialog.set_response_enabled("gameutils_install_dialog_ok", true);
-                    gameutils_install_dialog.set_body(&gettext("gameutils_install_dialog_success_false"));
+                    gameutils_install_dialog.set_body(&t!("gameutils_install_dialog_success_false"));
                 }
             }
     }));

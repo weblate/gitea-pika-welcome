@@ -5,7 +5,7 @@ use adw::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
+
 
 use duct::cmd;
 
@@ -27,13 +27,13 @@ pub fn final_carousel(first_setup_carousel: &adw::Carousel) {
 
     let first_setup_final_box_text = adw::StatusPage::builder()
         .icon_name("emblem-favorite")
-        .title(gettext("first_setup_final_box_text_title"))
-        .description(gettext("first_setup_final_box_text_description"))
+        .title(t!("first_setup_final_box_text_title"))
+        .description(t!("first_setup_final_box_text_description"))
         .build();
     first_setup_final_box_text.add_css_class("compact");
 
     let first_setup_start_button = gtk::Button::builder()
-        .label(gettext("first_setup_reboot_button_label"))
+        .label(t!("first_setup_reboot_button_label"))
         .halign(Align::Center)
         .build();
 

@@ -8,7 +8,7 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
+
 
 use std::{thread, time};
 
@@ -77,13 +77,13 @@ pub fn update_carousel(
 
     let first_setup_update_box_text = adw::StatusPage::builder()
         .icon_name("software-update-available")
-        .title(gettext("first_setup_update_box_text_title"))
+        .title(t!("first_setup_update_box_text_title"))
         .description("We recommend updating your PikaOS install before proceeding\nWould you like to Update your system?")
         .build();
     first_setup_update_box_text.add_css_class("compact");
 
     let first_setup_update_button = gtk::Button::builder()
-        .label(gettext("first_setup_update_button_label"))
+        .label(t!("first_setup_update_button_label"))
         .sensitive(false)
         .build();
 
@@ -91,7 +91,7 @@ pub fn update_carousel(
     first_setup_update_button.add_css_class("pill");
 
     let first_setup_update_skip_button = gtk::Button::builder()
-        .label(gettext("first_setup_update_skip_button_label"))
+        .label(t!("first_setup_update_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -134,9 +134,9 @@ pub fn update_carousel(
         .extra_child(&system_update_log_terminal_scroll)
         .width_request(400)
         .height_request(200)
-        .heading(gettext("system_update_dialog_heading"))
+        .heading(t!("system_update_dialog_heading"))
         .build();
-    system_update_dialog.add_response("system_update_dialog_ok", &gettext("system_update_dialog_ok_label"));
+    system_update_dialog.add_response("system_update_dialog_ok", &t!("system_update_dialog_ok_label"));
 
     first_setup_update_buttons_box.append(&first_setup_update_button);
     first_setup_update_buttons_box.append(&first_setup_update_skip_button);
@@ -153,10 +153,10 @@ pub fn update_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_update_button.set_sensitive(true);
-                    first_setup_update_button.set_label(&gettext("first_setup_update_button_label"));
+                    first_setup_update_button.set_label(&t!("first_setup_update_button_label"));
                 } else {
                     first_setup_update_button.set_sensitive(false);
-                    first_setup_update_button.set_label(&gettext("internet_network_disabled"));
+                    first_setup_update_button.set_label(&t!("internet_network_disabled"));
                 }
             }
         }),
@@ -176,16 +176,16 @@ pub fn update_carousel(
             while let Ok(state) = log_status_loop_receiver.recv().await {
                 if state == true {
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
-                    system_update_dialog.set_body(&gettext("system_update_dialog_success_true"));
+                    system_update_dialog.set_body(&t!("system_update_dialog_success_true"));
                     first_setup_update_button.remove_css_class("suggested-action");
-                    first_setup_update_skip_button.set_label(&gettext("internet_next_button_label"));
+                    first_setup_update_skip_button.set_label(&t!("internet_next_button_label"));
                     first_setup_update_skip_button.add_css_class("suggested-action");
                 } else {
                     first_setup_update_skip_button.remove_css_class("suggested-action");
-                    first_setup_update_skip_button.set_label(&gettext("internet_skip_button_label"));
+                    first_setup_update_skip_button.set_label(&t!("internet_skip_button_label"));
                     first_setup_update_button.add_css_class("suggested-action");
                     system_update_dialog.set_response_enabled("system_update_dialog_ok", true);
-                    system_update_dialog.set_body(&gettext("system_update_dialog_success_false"));
+                    system_update_dialog.set_body(&t!("system_update_dialog_success_false"));
                 }
             }
     }));

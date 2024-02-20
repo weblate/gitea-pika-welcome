@@ -6,7 +6,7 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
+
 use crate::config::{DISTRO_ICON};
 
 pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
@@ -21,13 +21,13 @@ pub fn initial_carousel(first_setup_carousel: &adw::Carousel) {
 
     let first_setup_initial_box_text = adw::StatusPage::builder()
         .icon_name(DISTRO_ICON)
-        .title(gettext("first_setup_initial_box_text_title"))
-        .description(gettext("first_setup_initial_box_text_description"))
+        .title(t!("first_setup_initial_box_text_title"))
+        .description(t!("first_setup_initial_box_text_description"))
         .build();
     first_setup_initial_box_text.add_css_class("compact");
 
     let first_setup_start_button = gtk::Button::builder()
-        .label(gettext("first_setup_start_button_label"))
+        .label(t!("first_setup_start_button_label"))
         .halign(Align::Center)
         .build();
 

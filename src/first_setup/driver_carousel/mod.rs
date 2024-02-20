@@ -8,7 +8,7 @@ use glib::*;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::gettext;
+
 
 use std::{thread, time};
 
@@ -42,13 +42,13 @@ pub fn driver_carousel(
 
     let first_setup_driver_box_text = adw::StatusPage::builder()
         .icon_name("audio-card")
-        .title(gettext("first_setup_driver_box_text_title"))
-        .description(gettext("first_setup_driver_box_text_description"))
+        .title(t!("first_setup_driver_box_text_title"))
+        .description(t!("first_setup_driver_box_text_description"))
         .build();
     first_setup_driver_box_text.add_css_class("compact");
 
     let first_setup_driver_button = gtk::Button::builder()
-        .label(gettext("first_setup_driver_button_label"))
+        .label(t!("first_setup_driver_button_label"))
         .sensitive(false)
         .build();
 
@@ -56,7 +56,7 @@ pub fn driver_carousel(
     first_setup_driver_button.add_css_class("pill");
 
     let first_setup_driver_skip_button = gtk::Button::builder()
-        .label(gettext("first_setup_driver_skip_button_label"))
+        .label(t!("first_setup_driver_skip_button_label"))
         .sensitive(true)
         .width_request(25)
         .build();
@@ -91,10 +91,10 @@ pub fn driver_carousel(
             while let Ok(_state) = internet_loop_receiver.recv().await {
                 if *internet_connected_status.borrow_mut() == true {
                     first_setup_driver_button.set_sensitive(true);
-                    first_setup_driver_button.set_label(&gettext("first_setup_driver_button_label"));
+                    first_setup_driver_button.set_label(&t!("first_setup_driver_button_label"));
                 } else {
                     first_setup_driver_button.set_sensitive(false);
-                    first_setup_driver_button.set_label(&gettext("internet_network_disabled"));
+                    first_setup_driver_button.set_label(&t!("internet_network_disabled"));
                 }
             }
         }),
@@ -105,7 +105,7 @@ pub fn driver_carousel(
             .spawn()
             .expect("pika-drivers failed to start");
         first_setup_driver_button.remove_css_class("suggested-action");
-        first_setup_driver_skip_button.set_label(&gettext("internet_next_button_label"));
+        first_setup_driver_skip_button.set_label(&t!("internet_next_button_label"));
         first_setup_driver_skip_button.add_css_class("suggested-action");
     }));
 

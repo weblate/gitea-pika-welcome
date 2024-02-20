@@ -18,4 +18,4 @@ install:
 	cp -vf data/com.github.pikaos-linux.pikafirstsetup.desktop  $(DESTDIR)/usr/share/applications/
 	mkdir -p $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
 	cp -vf data/com.github.pikaos-linux.pikafirstsetup.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
-	makepot $(DESTDIR)/usr/share/locale
+	#makepot $(DESTDIR)/usr/share/locale

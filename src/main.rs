@@ -1,6 +1,7 @@
 // GTK crates
 mod config;
 
+use std::env;
 use adw::prelude::*;
 use adw::*;
 use gdk::Display;
@@ -8,9 +9,9 @@ use gdk::Display;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 
-use gettextrs::{gettext, LocaleCategory};
+use std::boxed::Box;
 use users::*;
-use config::{GETTEXT_PACKAGE, LOCALEDIR, APP_ID};
+use config::{APP_ID};
 
 // application crates
 mod build_ui;
@@ -18,8 +19,18 @@ use crate::build_ui::build_ui;
 /// first setup crates
 mod first_setup;
 
+// Init translations for current crate.
+#[macro_use]
+extern crate rust_i18n;
+i18n!("locales", fallback = "en_US");
+
 /// main function
 fn main() {
+    let current_locale = match env::var_os("LANG") {
+        Some(v) => v.into_string().unwrap(),
+        None => panic!("$LANG is not set"),
+    };
+    rust_i18n::set_locale(current_locale.strip_suffix(".UTF-8").unwrap());
     let application = adw::Application::new(
         Some(APP_ID),
         Default::default(),
@@ -35,20 +46,10 @@ fn main() {
             &provider,
             STYLE_PROVIDER_PRIORITY_APPLICATION,
         );
-        // Prepare i18n
-        gettextrs::setlocale(LocaleCategory::LcAll, "");
-        gettextrs::bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR).expect("Unable to bind the text domain");
-        gettextrs::textdomain(GETTEXT_PACKAGE).expect("Unable to switch to the text domain");
-        // Fallback if no translation present
-        if gettext("first_setup_initial_box_text_title") == "first_setup_initial_box_text_title" {
-            println!("Warning: Current LANG is not supported, using fallback Locale.");
-            gettextrs::setlocale(LocaleCategory::LcAll, "en_US.UTF8");
-        }
-
         app.connect_activate(build_ui);
     });
 
-    if get_current_username().unwrap() == "pikaos" {
+    if get_current_username().unwrap() != "pikaos" {
         application.run();
     } else {
         println!("Error: This program can only be run via pikaos user");

@@ -8,6 +8,7 @@ use gdk::Display;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
+use single_instance::SingleInstance;
 
 use std::boxed::Box;
 use users::*;
@@ -48,6 +49,9 @@ fn main() {
         );
         app.connect_activate(build_ui);
     });
+
+    let instance = SingleInstance::new(APP_ID).unwrap();
+    assert!(instance.is_single());
 
     if get_current_username().unwrap() != "pikaos" {
         application.run();

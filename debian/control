@@ -1,4 +1,4 @@
-Source: pika-first-setup
+Source: pika-welcome
 Section: utils
 Priority: optional
 Maintainer: International Arms dealers <chipichipi@chapachapa.com>
@@ -12,7 +12,7 @@ Build-Depends: build-essential,
                libvte-2.91-gtk4-dev
 Rules-Requires-Root: no
 
-Package: pika-first-setup-gtk4
+Package: pika-welcome
 Architecture: any
 Depends: ${shlibs:Depends}
 Description: A frontend in GTK 4 and Libadwaita for initial user setup in pika.

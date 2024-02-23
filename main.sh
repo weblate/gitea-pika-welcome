@@ -1,7 +1,7 @@
 # Clone Upstream
-mkdir -p ./pika-first-setup
-rsync -av --progress ./* ./pika-first-setup --exclude ./pika-first-setup
-cd ./pika-first-setup
+mkdir -p ./pika-welcome
+rsync -av --progress ./* ./pika-welcome --exclude ./pika-welcome
+cd ./pika-welcome
 
 # Get build deps
 apt-get build-dep ./ -y

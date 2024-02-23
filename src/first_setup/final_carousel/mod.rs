@@ -46,6 +46,6 @@ pub fn final_carousel(first_setup_carousel: &adw::Carousel) {
     first_setup_carousel.append(&first_setup_final_box);
 
     first_setup_start_button.connect_clicked( move |_| {
-        let _ = cmd!("/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh", "bash", "-c", REBOOT_PROG).read();
+        let _ = cmd!("/usr/lib/pika/pika-welcome/scripts/pika-sudo.sh", "bash", "-c", REBOOT_PROG).read();
     });
 }

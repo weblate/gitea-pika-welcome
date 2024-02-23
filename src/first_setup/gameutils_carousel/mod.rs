@@ -23,7 +23,7 @@ use std::io::BufReader;
 const GAMEUTILS_INSTALL_PROG: &str = "
 #! /bin/bash
 set -e
-/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt update -y && /usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt install pika-gameutils-meta -y
+/usr/lib/pika/pika-welcome/scripts/pika-sudo.sh apt update -y && /usr/lib/pika/pika-welcome/scripts/pika-sudo.sh apt install pika-gameutils-meta -y
 ";
 
 fn gameutils_install(

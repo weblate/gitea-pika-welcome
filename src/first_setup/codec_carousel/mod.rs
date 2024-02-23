@@ -23,7 +23,7 @@ use std::io::BufReader;
 const CODEC_INSTALL_PROG: &str = "
 #! /bin/bash
 set -e
-/usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt update -y && /usr/lib/pika/pika-first-setup-gtk4/scripts/pika-sudo.sh apt install pika-codecs-meta -y
+/usr/lib/pika/pika-welcome/scripts/pika-sudo.sh apt update -y && /usr/lib/pika/pika-welcome/scripts/pika-sudo.sh apt install pika-codecs-meta -y
 ";
 
 fn codec_install(

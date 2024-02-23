@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
 Name=PikaOS Initial User Setup
-Exec=pika-first-setup-gtk4
+Exec=pika-welcome
 Hidden=false
 NoDisplay=true
-Icon=com.github.pikaos-linux.pikafirstsetup
+Icon=com.github.pikaos-linux.pikawelcome
 X-GNOME-Autostart-enabled=true
 X-KDE-AutostartScript=true
 Categories=GNOME;GTK;Utility;

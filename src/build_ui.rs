@@ -21,7 +21,7 @@ pub fn build_ui(app: &adw::Application) {
         .application(app)
         // Add the box called "window_box" to it
         // Application icon
-        .icon_name("com.github.pikaos-linux.pikafirstsetup")
+        .icon_name("com.github.pikaos-linux.pikawelcome")
         // Minimum Size/Default
         .width_request(700)
         .height_request(500)
@@ -29,7 +29,7 @@ pub fn build_ui(app: &adw::Application) {
         .hide_on_close(true)
         .deletable(false)
         // Startup
-        .startup_id("com.github.pikaos-linux.pikafirstsetup")
+        .startup_id("com.github.pikaos-linux.pikawelcome")
         // build the window
         .build();
 

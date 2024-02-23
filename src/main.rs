@@ -49,10 +49,10 @@ fn main() {
         app.connect_activate(build_ui);
     });
 
-    if get_current_username().unwrap() == "pikaos" {
+    if get_current_username().unwrap() != "pikaos" {
         application.run();
     } else {
-        println!("Error: This program can only be run via pikaos user");
+        println!("Error: This program can only be run via an installed system user");
         std::process::exit(1)
     }
 

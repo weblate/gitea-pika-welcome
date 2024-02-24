@@ -1,41 +1,56 @@
 // GTK crates
 use adw::prelude::*;
 use adw::*;
+use glib::*;
+use gtk::Orientation;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 
 // application crates
 /// first setup crates
 use crate::config::*;
-use crate::first_setup::*;
+use crate::save_window_size::save_window_size;
+use crate::welcome_content_page::welcome_content_page;
 
 pub fn build_ui(app: &adw::Application) {
     // setup glib
     gtk::glib::set_prgname(Some(t!("app_name").to_string()));
     glib::set_application_name(&t!("app_name").to_string());
+    let glib_settings = gio::Settings::new(APP_ID);
+
+    let content_box = gtk::Box::builder()
+        .vexpand(true)
+        .hexpand(true)
+        .orientation(Orientation::Vertical)
+        .build();
 
     // create the main Application window
     let window = adw::ApplicationWindow::builder()
-        // The text on the titlebar
         .title(t!("app_name"))
-        // link it to the application "app"
         .application(app)
-        // Add the box called "window_box" to it
-        // Application icon
+        .content(&content_box)
         .icon_name(APP_ICON)
-        // Minimum Size/Default
-        .width_request(700)
+        .default_width(glib_settings.int("window-width"))
+        .default_height(glib_settings.int("window-height"))
+        .width_request(300)
         .height_request(500)
-        // Hide window instead of destroy
-        .hide_on_close(true)
-        .deletable(false)
-        // Startup
         .startup_id(APP_ID)
-        // build the window
         .build();
 
-    first_setup(&window);
+    if glib_settings.boolean("is-maximized") == true {
+        window.maximize()
+    }
 
+    window.connect_close_request(move |window| {
+        if let Some(application) = window.application() {
+            save_window_size(&window, &glib_settings);
+            application.remove_window(window);
+        }
+        glib::Propagation::Proceed
+    });
+
+    //
+    welcome_content_page(&window, &content_box);
     // show the window
     window.present()
 }

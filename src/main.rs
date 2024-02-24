@@ -9,6 +9,8 @@ use gdk::Display;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 use single_instance::SingleInstance;
+use glib::*;
+use glib::prelude::*;
 
 use std::boxed::Box;
 use users::*;
@@ -17,8 +19,9 @@ use config::{APP_ID};
 // application crates
 mod build_ui;
 use crate::build_ui::build_ui;
+mod save_window_size;
 /// first setup crates
-mod first_setup;
+mod welcome_content_page;
 
 // Init translations for current crate.
 #[macro_use]

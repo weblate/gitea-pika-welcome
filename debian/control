@@ -15,4 +15,4 @@ Rules-Requires-Root: no
 Package: pika-welcome
 Architecture: any
 Depends: ${shlibs:Depends}
-Description: A frontend in GTK 4 and Libadwaita for initial user setup in pika.
+Description: A frontend in GTK 4 and Libadwaita for Post install PikaOS setup.

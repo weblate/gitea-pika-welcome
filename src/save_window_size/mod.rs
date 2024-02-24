@@ -1,4 +1,4 @@
-use adw::{gio,};
+use adw::gio;
 use adw::prelude::SettingsExt;
 use gtk::prelude::GtkWindowExt;
 pub fn save_window_size(window: &adw::ApplicationWindow, glib_settings: &gio::Settings) {

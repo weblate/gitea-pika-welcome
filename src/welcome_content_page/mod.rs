@@ -8,13 +8,21 @@ use std::process::Command;
 use std::rc::Rc;
 
 // stack crates
-mod welcome_page;
-mod setup_steps_page;
+mod community_page;
+mod contribute_page;
+mod look_and_feel_page;
 mod recommended_addons_page;
+mod setup_steps_page;
+mod troubleshoot_page;
+mod welcome_page;
 
-use welcome_page::welcome_page;
-use setup_steps_page::setup_steps_page;
+use community_page::community_page;
+use contribute_page::contribute_page;
+use look_and_feel_page::look_and_feel_page;
 use recommended_addons_page::recommended_addons_page;
+use setup_steps_page::setup_steps_page;
+use troubleshoot_page::troubleshoot_page;
+use welcome_page::welcome_page;
 
 use crate::config::{APP_GITHUB, APP_ICON, APP_ID, VERSION};
 
@@ -52,9 +60,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         }
     });
 
-    let window_banner = adw::Banner::builder()
-        .revealed(false)
-        .build();
+    let window_banner = adw::Banner::builder().revealed(false).build();
 
     let window_title_bar = gtk::HeaderBar::builder().show_title_buttons(true).build();
 
@@ -65,7 +71,8 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
     let mut json_array: Vec<GString> = Vec::new();
     let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/credits.json";
     let json_data = std::fs::read_to_string(json_path).expect("Unable to read json");
-    let json_data: serde_json::Value = serde_json::from_str(&json_data).expect("JSON format invalid");
+    let json_data: serde_json::Value =
+        serde_json::from_str(&json_data).expect("JSON format invalid");
     if let serde_json::Value::Array(developers) = &json_data["developers"] {
         for developer in developers {
             json_array.push(developer["dev"].as_str().to_owned().unwrap().into())
@@ -130,10 +137,27 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .bidirectional()
         .build();
 
-    let welcome_content_page_split_view_breakpoint = adw::Breakpoint::new(BreakpointCondition::new_length(BreakpointConditionLengthType::MaxWidth, 600.0, LengthUnit::Px));
-    welcome_content_page_split_view_breakpoint.add_setter(&welcome_content_page_split_view, "collapsed", &true.to_value());
-    welcome_content_page_split_view_breakpoint.add_setter(&startup_switch, "visible", &false.to_value());
-    welcome_content_page_split_view_breakpoint.add_setter(&sidebar_toggle_button, "visible", &true.to_value());
+    let welcome_content_page_split_view_breakpoint =
+        adw::Breakpoint::new(BreakpointCondition::new_length(
+            BreakpointConditionLengthType::MaxWidth,
+            600.0,
+            LengthUnit::Px,
+        ));
+    welcome_content_page_split_view_breakpoint.add_setter(
+        &welcome_content_page_split_view,
+        "collapsed",
+        &true.to_value(),
+    );
+    welcome_content_page_split_view_breakpoint.add_setter(
+        &startup_switch,
+        "visible",
+        &false.to_value(),
+    );
+    welcome_content_page_split_view_breakpoint.add_setter(
+        &sidebar_toggle_button,
+        "visible",
+        &true.to_value(),
+    );
 
     window.add_breakpoint(welcome_content_page_split_view_breakpoint);
 
@@ -165,7 +189,15 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         }
     }));
 
-    welcome_page(&welcome_content_page_stack, &window_banner, &internet_connected);
+    welcome_page(
+        &welcome_content_page_stack,
+        &window_banner,
+        &internet_connected,
+    );
     setup_steps_page(&welcome_content_page_stack, &window, &internet_connected);
     recommended_addons_page(&welcome_content_page_stack, &window, &internet_connected);
+    look_and_feel_page(&welcome_content_page_stack, &window, &internet_connected);
+    troubleshoot_page(&welcome_content_page_stack, &window, &internet_connected);
+    community_page(&welcome_content_page_stack, &window, &internet_connected);
+    contribute_page(&welcome_content_page_stack, &window, &internet_connected);
 }

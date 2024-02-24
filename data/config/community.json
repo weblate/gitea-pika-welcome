@@ -1,0 +1,20 @@
+{
+  "setup_steps": [
+    {
+      "id": 0,
+      "title": "update-pikaos-title",
+      "subtitle": "update-pikaos-subtitle",
+      "icon": "pika-system-software-update",
+      "button": "update-pikaos-button-label",
+      "command": "echo update"
+    },
+    {
+      "id": 1,
+      "title": "install-media-codec-title",
+      "subtitle": "install-media-codec-subtitle",
+      "icon": "pika-media-tape",
+      "button": "install-media-codec-button-label",
+      "command": "echo codec"
+    }
+  ]
+}

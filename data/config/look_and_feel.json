@@ -1,0 +1,22 @@
+{
+  "look_and_feel": [
+    {
+      "id": 0,
+      "title": "update-pikaos-title",
+      "subtitle": "update-pikaos-subtitle",
+      "icon": "pika-system-software-update",
+      "button": "update-pikaos-button-label",
+      "only-in": "",
+      "command": "echo update"
+    },
+    {
+      "id": 1,
+      "title": "update-pikaos-title",
+      "subtitle": "update-pikaos-subtitle",
+      "icon": "pika-system-software-update",
+      "button": "update-pikaos-button-label",
+      "only-in": "gnome",
+      "command": "echo update"
+    }
+  ]
+}

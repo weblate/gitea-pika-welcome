@@ -1,18 +1,17 @@
 // GTK crates
-use std::io::BufReader;
-use duct::cmd;
-use std::io::BufRead;
-use std::path::Path;
-use std::fs;
-use serde::Deserialize;
-use std::{thread, time};
-use std::rc::Rc;
-use std::cell::RefCell;
 use adw::prelude::*;
 use adw::*;
+use duct::cmd;
 use glib::*;
+use serde::Deserialize;
+use std::cell::RefCell;
 use std::error::Error;
+use std::fs;
+use std::io::BufRead;
+use std::io::BufReader;
 use std::process::Command;
+use std::rc::Rc;
+use std::{thread, time};
 
 #[allow(non_camel_case_types)]
 #[derive(PartialEq, Debug, Eq, Hash, Clone, Ord, PartialOrd, Deserialize)]
@@ -22,7 +21,7 @@ struct recommended_addons_entry {
     subtitle: String,
     icon: String,
     checkpkg: String,
-    packages: String
+    packages: String,
 }
 
 const ADDON_COMMAND_PROG1: &str = r###"
@@ -44,10 +43,21 @@ fn run_addon_command(
     entry_packages: &str,
 ) -> Result<(), std::boxed::Box<dyn Error + Send + Sync>> {
     let (pipe_reader, pipe_writer) = os_pipe::pipe()?;
-    let child = cmd!("pkexec", "bash", "-c",  ADDON_COMMAND_PROG1.to_owned() + "apt " + operation + " " + &entry_packages + r###" -y -o Dpkg::Options::="--force-confnew""### + ADDON_COMMAND_PROG2)
-            .stderr_to_stdout()
-            .stdout_file(pipe_writer)
-            .start()?;
+    let child = cmd!(
+        "pkexec",
+        "bash",
+        "-c",
+        ADDON_COMMAND_PROG1.to_owned()
+            + "apt "
+            + operation
+            + " "
+            + &entry_packages
+            + r###" -y -o Dpkg::Options::="--force-confnew""###
+            + ADDON_COMMAND_PROG2
+    )
+    .stderr_to_stdout()
+    .stdout_file(pipe_writer)
+    .start()?;
     for line in BufReader::new(pipe_reader).lines() {
         log_loop_sender
             .send_blocking(line?)
@@ -61,7 +71,7 @@ fn run_addon_command(
 pub fn recommended_addons_page(
     recommended_addons_content_page_stack: &gtk::Stack,
     window: &adw::ApplicationWindow,
-    internet_connected: &Rc<RefCell<bool>>
+    internet_connected: &Rc<RefCell<bool>>,
 ) {
     let internet_connected_status = internet_connected.clone();
 
@@ -75,10 +85,7 @@ pub fn recommended_addons_page(
             .expect("The channel needs to be open.");
     });
 
-    let recommended_addons_page_box = gtk::Box::builder()
-        .vexpand(true)
-        .hexpand(true)
-        .build();
+    let recommended_addons_page_box = gtk::Box::builder().vexpand(true).hexpand(true).build();
 
     let recommended_addons_page_listbox = gtk::ListBox::builder()
         .margin_top(20)
@@ -113,27 +120,32 @@ pub fn recommended_addons_page(
         }),
     );
 
+    let entry_buttons_size_group = gtk::SizeGroup::new(gtk::SizeGroupMode::Both);
+
     let mut json_array: Vec<recommended_addons_entry> = Vec::new();
     let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/recommended_addons.json";
     let json_data = fs::read_to_string(json_path).expect("Unable to read json");
-    let json_data: serde_json::Value = serde_json::from_str(&json_data).expect("JSON format invalid");
+    let json_data: serde_json::Value =
+        serde_json::from_str(&json_data).expect("JSON format invalid");
     if let serde_json::Value::Array(recommended_addons) = &json_data["recommended_addons"] {
         for recommended_addons_entry in recommended_addons {
-            let recommended_addons_entry_struct: recommended_addons_entry = serde_json::from_value(recommended_addons_entry.clone()).unwrap();
+            let recommended_addons_entry_struct: recommended_addons_entry =
+                serde_json::from_value(recommended_addons_entry.clone()).unwrap();
             json_array.push(recommended_addons_entry_struct);
         }
     }
 
     for recommended_addons_entry in json_array {
-        let (checkpkg_status_loop_sender, checkpkg_status_loop_receiver) = async_channel::unbounded();
-        let checkpkg_status_loop_sender: async_channel::Sender<bool> = checkpkg_status_loop_sender.clone();
+        let (checkpkg_status_loop_sender, checkpkg_status_loop_receiver) =
+            async_channel::unbounded();
+        let checkpkg_status_loop_sender: async_channel::Sender<bool> =
+            checkpkg_status_loop_sender.clone();
 
         let (log_loop_sender, log_loop_receiver) = async_channel::unbounded();
         let log_loop_sender: async_channel::Sender<String> = log_loop_sender.clone();
 
         let (log_status_loop_sender, log_status_loop_receiver) = async_channel::unbounded();
-        let log_status_loop_sender: async_channel::Sender<bool> =
-            log_status_loop_sender.clone();
+        let log_status_loop_sender: async_channel::Sender<bool> = log_status_loop_sender.clone();
 
         let entry_title = recommended_addons_entry.title;
         let entry_subtitle = recommended_addons_entry.subtitle;
@@ -141,18 +153,20 @@ pub fn recommended_addons_page(
         let entry_checkpkg = recommended_addons_entry.checkpkg;
         let entry_packages = recommended_addons_entry.packages;
 
-        gio::spawn_blocking(clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || {
-            let checkpkg_command = Command::new("dpkg")
-                .arg("-s")
-                .arg(entry_checkpkg)
-                .output()
-                .expect("failed to execute process");
-            if checkpkg_command.status.success() {
-                checkpkg_status_loop_sender.send_blocking(true).expect("The channel needs to be open.");
-            } else {
-                checkpkg_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
-            }
-        }));
+        gio::spawn_blocking(
+            clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || {
+                let checkpkg_command = Command::new("dpkg")
+                    .arg("-s")
+                    .arg(entry_checkpkg)
+                    .output()
+                    .expect("failed to execute process");
+                if checkpkg_command.status.success() {
+                    checkpkg_status_loop_sender.send_blocking(true).expect("The channel needs to be open.");
+                } else {
+                    checkpkg_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
+                }
+            }),
+        );
 
         let entry_row = adw::ActionRow::builder()
             .title(t!(&entry_title))
@@ -170,6 +184,7 @@ pub fn recommended_addons_page(
             .vexpand(true)
             .valign(gtk::Align::Center)
             .build();
+        entry_buttons_size_group.add_widget(&entry_row_button);
         entry_row.add_prefix(&entry_row_icon);
         entry_row.add_suffix(&entry_row_button);
 
@@ -205,21 +220,23 @@ pub fn recommended_addons_page(
 
         let checkpkg_status_loop_context = MainContext::default();
         // The main loop executes the asynchronous block
-        checkpkg_status_loop_context.spawn_local(clone!(@weak entry_row_button, @strong checkpkg_status_loop_receiver => async move {
-            while let Ok(state) = checkpkg_status_loop_receiver.recv().await {
-                if state == false {
-                    entry_row_button.remove_css_class("destructive-action");
-                    entry_row_button.set_label(&t!("entry_row_button_install").to_string());
-                    entry_row_button.add_css_class("suggested-action");
-                    entry_row_button.set_widget_name("false")
-                } else {
-                    entry_row_button.remove_css_class("suggested-action");
-                    entry_row_button.set_label(&t!("entry_row_button_remove").to_string());
-                    entry_row_button.add_css_class("destructive-action");
-                    entry_row_button.set_widget_name("true")
+        checkpkg_status_loop_context.spawn_local(
+            clone!(@weak entry_row_button, @strong checkpkg_status_loop_receiver => async move {
+                while let Ok(state) = checkpkg_status_loop_receiver.recv().await {
+                    if state == false {
+                        entry_row_button.remove_css_class("destructive-action");
+                        entry_row_button.set_label(&t!("entry_row_button_install").to_string());
+                        entry_row_button.add_css_class("suggested-action");
+                        entry_row_button.set_widget_name("false")
+                    } else {
+                        entry_row_button.remove_css_class("suggested-action");
+                        entry_row_button.set_label(&t!("entry_row_button_remove").to_string());
+                        entry_row_button.add_css_class("destructive-action");
+                        entry_row_button.set_widget_name("true")
+                    }
                 }
-            }
-        }));
+            }),
+        );
 
         //
         let log_loop_context = MainContext::default();
@@ -291,5 +308,9 @@ pub fn recommended_addons_page(
 
     recommended_addons_page_box.append(&recommended_addons_page_listbox);
 
-    recommended_addons_content_page_stack.add_titled(&recommended_addons_page_scroll, Some("recommended_addons_page"), &t!("recommended_addons_page_title").to_string());
+    recommended_addons_content_page_stack.add_titled(
+        &recommended_addons_page_scroll,
+        Some("recommended_addons_page"),
+        &t!("recommended_addons_page_title").to_string(),
+    );
 }

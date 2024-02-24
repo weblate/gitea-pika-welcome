@@ -1,16 +1,16 @@
 // GTK crates
-use std::{thread, time};
-use std::rc::Rc;
-use std::cell::RefCell;
+use crate::config::DISTRO_ICON;
 use adw::prelude::*;
 use adw::*;
 use glib::*;
-use crate::config::DISTRO_ICON;
+use std::cell::RefCell;
+use std::rc::Rc;
+use std::{thread, time};
 
 pub fn welcome_page(
     welcome_content_page_stack: &gtk::Stack,
     window_banner: &adw::Banner,
-    internet_connected: &Rc<RefCell<bool>>
+    internet_connected: &Rc<RefCell<bool>>,
 ) {
     let internet_connected_status = internet_connected.clone();
 
@@ -56,5 +56,9 @@ pub fn welcome_page(
         }),
     );
 
-    welcome_content_page_stack.add_titled(&welcome_page_scroll, Some("welcome_page"), &t!("welcome_page_title").to_string());
+    welcome_content_page_stack.add_titled(
+        &welcome_page_scroll,
+        Some("welcome_page"),
+        &t!("welcome_page_title").to_string(),
+    );
 }

@@ -1,7 +1,4 @@
 // GTK crates
-use adw::prelude::*;
-use adw::*;
-use gtk::Orientation;
 /// Use all gtk4 libraries (gtk4 -> gtk because cargo)
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 
@@ -10,6 +7,9 @@ use gtk::Orientation;
 use crate::config::*;
 use crate::save_window_size::save_window_size;
 use crate::welcome_content_page::welcome_content_page;
+use adw::prelude::*;
+use adw::*;
+use gtk::Orientation;
 
 pub fn build_ui(app: &adw::Application) {
     // setup glib

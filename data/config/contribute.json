@@ -2,19 +2,19 @@
   "contribute": [
     {
       "id": 0,
-      "title": "update-pikaos-title",
-      "subtitle": "update-pikaos-subtitle",
-      "icon": "pika-system-software-update",
-      "button": "update-pikaos-button-label",
-      "command": "echo update"
+      "title": "contribute-github-title",
+      "subtitle": "contribute-github-subtitle",
+      "icon": "pika-github",
+      "button": "launch-label",
+      "command": "xdg-open https://github.com/PikaOS-Linux"
     },
     {
-      "id": 1,
-      "title": "install-media-codec-title",
-      "subtitle": "install-media-codec-subtitle",
-      "icon": "pika-media-tape",
-      "button": "install-media-codec-button-label",
-      "command": "echo codec"
+      "id": 0,
+      "title": "translate-weblate-title",
+      "subtitle": "translate-weblate-subtitle",
+      "icon": "pika-weblate",
+      "button": "launch-label",
+      "command": "xdg-open https://hosted.weblate.org/projects/pikaos/"
     }
   ]
 }

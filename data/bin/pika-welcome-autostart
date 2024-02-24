@@ -1,0 +1,5 @@
+#! /bin/bash
+AUTOSTART=$(gsettings get com.github.pikaos-linux.pikawelcome startup-show)
+if [[ "$AUTOSTART" == "true" ]]; then
+	pika-welcome
+fi

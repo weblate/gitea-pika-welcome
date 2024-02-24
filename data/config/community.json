@@ -2,19 +2,19 @@
   "community": [
     {
       "id": 0,
-      "title": "update-pikaos-title",
-      "subtitle": "update-pikaos-subtitle",
-      "icon": "pika-system-software-update",
-      "button": "update-pikaos-button-label",
-      "command": "echo update"
+      "title": "join-discord-title",
+      "subtitle": "join-discord-subtitle",
+      "icon": "pika-discord",
+      "button": "launch-label",
+      "command": "xdg-open https://discord.gg/6HKR2YRvNg"
     },
     {
-      "id": 1,
-      "title": "install-media-codec-title",
-      "subtitle": "install-media-codec-subtitle",
-      "icon": "pika-media-tape",
-      "button": "install-media-codec-button-label",
-      "command": "echo codec"
+      "id": 0,
+      "title": "join-reddit-title",
+      "subtitle": "join-reddit-subtitle",
+      "icon": "pika-reddit",
+      "button": "launch-label",
+      "command": "xdg-open https://www.reddit.com/r/pikaos"
     }
   ]
 }

@@ -2,21 +2,39 @@
   "look_and_feel": [
     {
       "id": 0,
-      "title": "update-pikaos-title",
-      "subtitle": "update-pikaos-subtitle",
-      "icon": "pika-system-software-update",
-      "button": "update-pikaos-button-label",
-      "onlyin": "pika",
-      "command": "echo update"
+      "title": "open-pling-title",
+      "subtitle": "open-pling-subtitle",
+      "icon": "pika-emblem-downloads",
+      "button": "launch-label",
+      "onlyin": "",
+      "command": "xdg-open https://pling.com/"
     },
     {
       "id": 1,
-      "title": "update-pikaos-title",
-      "subtitle": "update-pikaos-subtitle",
-      "icon": "pika-system-software-update",
-      "button": "update-pikaos-button-label",
-      "onlyin": "kde",
-      "command": "echo update"
+      "title": "open-pika-gnome-layouts-title",
+      "subtitle": "open-pika-gnome-layouts-subtitle",
+      "icon": "pika-desktop",
+      "button": "launch-label",
+      "onlyin": "pika",
+      "command": "/usr/bin/pika-gnome-layouts"
+    },
+    {
+      "id": 2,
+      "title": "open-gnome-tweaks-title",
+      "subtitle": "open-gnome-tweaks-subtitle",
+      "icon": "pika-applications-graphics",
+      "button": "launch-label",
+      "onlyin": "pika",
+      "command": "/usr/bin/gnome-tweaks"
+    },
+    {
+      "id": 3,
+      "title": "open-gnome-extensions-title",
+      "subtitle": "open-gnome-extensions-subtitle",
+      "icon": "pika-application-x-addon",
+      "button": "launch-label",
+      "onlyin": "pika",
+      "command": "/usr/bin/extension-manager"
     }
   ]
 }

@@ -2,19 +2,83 @@
   "recommended_addons": [
     {
       "id": 0,
-      "title": "update-pikaos-title",
-      "subtitle": "update-pikaos-subtitle",
-      "icon": "pika-system-software-update",
+      "title": "pika-gameutils-meta-title",
+      "subtitle": "pika-gameutils-meta-subtitle",
+      "icon": "pika-input-gaming",
       "checkpkg": "pika-gameutils-meta",
-      "packages": "pika-gameutils-meta pika-codecs-meta"
+      "packages": "pika-gameutils-meta"
     },
     {
       "id": 1,
-      "title": "install-media-codec-title",
-      "subtitle": "install-media-codec-subtitle",
-      "icon": "pika-media-tape",
-      "checkpkg": "pika-rocm-meta",
-      "packages": "pika-gameutils-meta pika-codecs-meta"
+      "title": "protonup-qt-title",
+      "subtitle": "protonup-qt-subtitle",
+      "icon": "pika-net.davidotek.pupgui2",
+      "checkpkg": "protonup-qt",
+      "packages": "protonup-qt"
+    },
+    {
+      "id": 2,
+      "title": "pika-gameutils-meta-extra-title",
+      "subtitle": "pika-gameutils-meta-extra-subtitle",
+      "icon": "pika-input-gaming",
+      "checkpkg": "pika-gameutils-meta-extra",
+      "packages": "pika-gameutils-meta-extra"
+    },
+    {
+      "id": 3,
+      "title": "fabiscafe-devices-title",
+      "subtitle": "fabiscafe-devices-subtitle",
+      "icon": "pika-input-gaming",
+      "checkpkg": "fabiscafe-devices-extra",
+      "packages": "fabiscafe-devices-extra"
+    },
+    {
+      "id": 4,
+      "title": "ttf-mscorefonts-installer-title",
+      "subtitle": "ttf-mscorefonts-installer-subtitle",
+      "icon": "pika-msttf",
+      "checkpkg": "ttf-mscorefonts-installer-extra",
+      "packages": "ttf-mscorefonts-installer-extra"
+    },
+    {
+      "id": 5,
+      "title": "kdenlive-title",
+      "subtitle": "kdenlive-subtitle",
+      "icon": "pika-kdenlive",
+      "checkpkg": "kdenlive",
+      "packages": "kdenlive"
+    },
+    {
+      "id": 6,
+      "title": "krita-title",
+      "subtitle": "krita-subtitle",
+      "icon": "pika-krita",
+      "checkpkg": "krita",
+      "packages": "krita"
+    },
+    {
+      "id": 7,
+      "title": "libreoffice-title",
+      "subtitle": "libreoffice-subtitle",
+      "icon": "pika-libreoffice",
+      "checkpkg": "libreoffice",
+      "packages": "libreoffice"
+    },
+    {
+      "id": 8,
+      "title": "blender-title",
+      "subtitle": "blender-subtitle",
+      "icon": "pika-blender",
+      "checkpkg": "blender",
+      "packages": "blender"
+    },
+    {
+      "id": 9,
+      "title": "obs-title",
+      "subtitle": "obs-subtitle",
+      "icon": "pika-obs",
+      "checkpkg": "obs-studio",
+      "packages": "obs-studio"
     }
   ]
 }

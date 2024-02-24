@@ -1,0 +1,81 @@
+{
+  "developers": [
+    {
+      "id": 0,
+      "dev": "Welcome App's coding:\nCosmo & GlouriousEggroll"
+    },
+    {
+      "id": 1,
+      "dev": "Welcome App's UI:\nPizzaLovingNerd - risiOS BDFL"
+    },
+    {
+      "id": 2,
+      "dev": "Webapps manager:\nThe Linux Mint team"
+    },
+    {
+      "id": 3,
+      "dev": "Standalone gamescope session:\nThe ChimeraOS Team & KyleGospo"
+    },
+    {
+      "id": 4,
+      "dev": "Repositories, and firmware Manager, \nand The tiling in gnome-shell with pop-shell: \nThe Pop!OS Team"
+    },
+    {
+      "id": 5,
+      "dev": "Hybrid GPU Controls:\nasus-linux"
+    },    {
+      "id": 6,
+      "dev": "ISO testing VMs:\nAkiToasterUwU"
+    },
+    {
+      "id": 7,
+      "dev": "APX package manager:\nThe Vanilla OS Team"
+    },    {
+      "id": 8,
+      "dev": "Wallpapers:\nNeytirix & Colorman"
+    },
+    {
+      "id": 9,
+      "dev": "Logo artist:\nnesper8 (willsmanic) & MattsCreative & Piaf_Jaune"
+    },
+    {
+      "id": 10,
+      "dev": "Kernel Base:\nCachyOS team (ptr1337)"
+    },
+    {
+      "id": 11,
+      "dev": "Themeing:\nVinceliuice & Papirus"
+    },
+    {
+      "id": 12,
+      "dev": "Encryption Support:\nSkimmingDeath"
+    },
+    {
+      "id": 13,
+      "dev": "Graphics Drivers:\nKisak & Oibaf"
+    },
+    {
+      "id": 14,
+      "dev": "pikman package manager, Package Builder Hardware, \nServer Hosting:\nFerreo"
+    },    {
+      "id": 15,
+      "dev": "Website:\nFerreo & BL4Z3"
+    },
+    {
+      "id": 16,
+      "dev": "Anti Snap:\nThe Xtradeb team"
+    },
+    {
+      "id": 17,
+      "dev": "Technical Advisors:\nFerreo & ptr1337 & Zukureneno"
+    },
+    {
+      "id": 18,
+      "dev": "Audio Artist:\n4lk4"
+    },
+    {
+      "id": 19,
+      "dev": "Financial Contributors:\nnesper8 (willsmanic) & FlibbyJibbit & Zukureneno"
+    }
+  ]
+}

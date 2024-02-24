@@ -62,6 +62,16 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .icon_name("dialog-information-symbolic")
         .build();
 
+    let mut json_array: Vec<GString> = Vec::new();
+    let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/credits.json";
+    let json_data = std::fs::read_to_string(json_path).expect("Unable to read json");
+    let json_data: serde_json::Value = serde_json::from_str(&json_data).expect("JSON format invalid");
+    if let serde_json::Value::Array(developers) = &json_data["developers"] {
+        for developer in developers {
+            json_array.push(developer["dev"].as_str().to_owned().unwrap().into())
+        }
+    }
+
     let credits_window = adw::AboutWindow::builder()
         .application_icon(APP_ICON)
         .application_name(t!("app_name"))
@@ -69,6 +79,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .version(VERSION)
         .hide_on_close(true)
         .developer_name(t!("app_dev"))
+        .developers(json_array)
         .issue_url(APP_GITHUB.to_owned() + "/issues")
         .build();
 

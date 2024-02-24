@@ -1,10 +1,6 @@
-use adw::ffi::AdwApplicationWindow;
-use adw::{gio, glib};
+use adw::{gio,};
 use adw::prelude::SettingsExt;
-use adw::subclass::window;
 use gtk::prelude::GtkWindowExt;
-use glib::*;
-use glib::prelude::*;
 pub fn save_window_size(window: &adw::ApplicationWindow, glib_settings: &gio::Settings) {
     let size = window.default_size();
 

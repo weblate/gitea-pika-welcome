@@ -9,7 +9,10 @@ use std::rc::Rc;
 
 // stack crates
 mod welcome_page;
+mod setup_steps_page;
+
 use welcome_page::welcome_page;
+use setup_steps_page::setup_steps_page;
 
 use crate::config::{APP_GITHUB, APP_ICON, APP_ID, VERSION};
 
@@ -47,6 +50,10 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         }
     });
 
+    let window_banner = adw::Banner::builder()
+        .revealed(false)
+        .build();
+
     let window_title_bar = gtk::HeaderBar::builder().show_title_buttons(true).build();
 
     let credits_button = gtk::Button::builder()
@@ -65,6 +72,12 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     content_box.append(&window_title_bar);
 
+    let welcome_content_page_stack_box = gtk::Box::builder()
+        .vexpand(true)
+        .hexpand(true)
+        .orientation(gtk::Orientation::Vertical)
+        .build();
+
     let welcome_content_page_stack = gtk::Stack::builder()
         .vexpand(true)
         .hexpand(true)
@@ -79,7 +92,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
     let welcome_content_page_split_view = adw::OverlaySplitView::builder()
         .vexpand(true)
         .hexpand(true)
-        .content(&welcome_content_page_stack)
+        .content(&welcome_content_page_stack_box)
         .sidebar(&welcome_content_page_stack_sidebar)
         .max_sidebar_width(300.0)
         .min_sidebar_width(300.0)
@@ -110,6 +123,8 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     window.add_breakpoint(welcome_content_page_split_view_breakpoint);
 
+    welcome_content_page_stack_box.append(&window_banner);
+    welcome_content_page_stack_box.append(&welcome_content_page_stack);
     window_title_bar.pack_end(&credits_button);
     window_title_bar.pack_start(&sidebar_toggle_button);
     window_title_bar.pack_start(&startup_switch);
@@ -136,5 +151,6 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         }
     }));
 
-    welcome_page(&welcome_content_page_stack, &internet_connected);
+    welcome_page(&welcome_content_page_stack, &window_banner, &internet_connected);
+    setup_steps_page(&welcome_content_page_stack, &window, &internet_connected);
 }

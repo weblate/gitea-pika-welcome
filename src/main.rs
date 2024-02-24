@@ -9,8 +9,6 @@ use gdk::Display;
 /// Use all libadwaita libraries (libadwaita -> adw because cargo)
 use gtk::*;
 use single_instance::SingleInstance;
-use glib::*;
-use glib::prelude::*;
 
 use std::boxed::Box;
 use users::*;

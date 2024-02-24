@@ -11,9 +11,10 @@ use std::rc::Rc;
 mod welcome_page;
 use welcome_page::welcome_page;
 
-use crate::config::{APP_GITHUB, APP_ICON, VERSION};
+use crate::config::{APP_GITHUB, APP_ICON, APP_ID, VERSION};
 
 pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::Box) {
+    let glib_settings = gio::Settings::new(APP_ID);
     let internet_connected = Rc::new(RefCell::new(false));
 
     let (internet_loop_sender, internet_loop_receiver) = async_channel::unbounded();
@@ -88,6 +89,12 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     let sidebar_toggle_button = gtk::ToggleButton::builder()
         .icon_name("view-right-pane-symbolic")
+        .visible(false)
+        .build();
+
+    let startup_switch = gtk::CheckButton::builder()
+        .label(t!("startup_switch_label"))
+        .active(glib_settings.boolean("startup-show"))
         .build();
 
     let _sidebar_toggle_button_binding = welcome_content_page_split_view
@@ -98,15 +105,22 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     let welcome_content_page_split_view_breakpoint = adw::Breakpoint::new(BreakpointCondition::new_length(BreakpointConditionLengthType::MaxWidth, 600.0, LengthUnit::Px));
     welcome_content_page_split_view_breakpoint.add_setter(&welcome_content_page_split_view, "collapsed", &true.to_value());
+    welcome_content_page_split_view_breakpoint.add_setter(&startup_switch, "visible", &false.to_value());
+    welcome_content_page_split_view_breakpoint.add_setter(&sidebar_toggle_button, "visible", &true.to_value());
 
     window.add_breakpoint(welcome_content_page_split_view_breakpoint);
 
     window_title_bar.pack_end(&credits_button);
     window_title_bar.pack_start(&sidebar_toggle_button);
+    window_title_bar.pack_start(&startup_switch);
     content_box.append(&welcome_content_page_split_view);
 
     credits_button
         .connect_clicked(clone!(@weak credits_button => move |_| credits_window.present()));
+
+    startup_switch.connect_toggled(clone!(@weak startup_switch => move |_| {
+        let _ = glib_settings.set_boolean("startup-show", startup_switch.is_active());
+    }));
 
     let internet_connected_status = internet_connected.clone();
 

@@ -1,0 +1,20 @@
+{
+  "recommended_addons": [
+    {
+      "id": 0,
+      "title": "update-pikaos-title",
+      "subtitle": "update-pikaos-subtitle",
+      "icon": "pika-system-software-update",
+      "checkpkg": "pika-gameutils-meta",
+      "packages": "pika-gameutils-meta pika-codecs-meta"
+    },
+    {
+      "id": 1,
+      "title": "install-media-codec-title",
+      "subtitle": "install-media-codec-subtitle",
+      "icon": "pika-media-tape",
+      "checkpkg": "pika-rocm-meta",
+      "packages": "pika-gameutils-meta pika-codecs-meta"
+    }
+  ]
+}

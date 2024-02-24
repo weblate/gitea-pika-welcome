@@ -10,9 +10,11 @@ use std::rc::Rc;
 // stack crates
 mod welcome_page;
 mod setup_steps_page;
+mod recommended_addons_page;
 
 use welcome_page::welcome_page;
 use setup_steps_page::setup_steps_page;
+use recommended_addons_page::recommended_addons_page;
 
 use crate::config::{APP_GITHUB, APP_ICON, APP_ID, VERSION};
 
@@ -81,6 +83,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
     let welcome_content_page_stack = gtk::Stack::builder()
         .vexpand(true)
         .hexpand(true)
+        .transition_type(gtk::StackTransitionType::SlideUpDown)
         .build();
 
     let welcome_content_page_stack_sidebar = gtk::StackSidebar::builder()
@@ -153,4 +156,5 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     welcome_page(&welcome_content_page_stack, &window_banner, &internet_connected);
     setup_steps_page(&welcome_content_page_stack, &window, &internet_connected);
+    recommended_addons_page(&welcome_content_page_stack, &window, &internet_connected);
 }

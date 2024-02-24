@@ -9,10 +9,10 @@ use std::cell::RefCell;
 use adw::prelude::*;
 use adw::*;
 use glib::*;
-use std::fs::File;
 
+#[allow(non_camel_case_types)]
 #[derive(PartialEq, Debug, Eq, Hash, Clone, Ord, PartialOrd, Deserialize)]
-struct Setup_Steps_Entry {
+struct setup_steps_entry {
     id: i32,
     title: String,
     subtitle: String,
@@ -76,13 +76,13 @@ pub fn setup_steps_page(
         }),
     );
 
-    let mut json_array: Vec<Setup_Steps_Entry> = Vec::new();
+    let mut json_array: Vec<setup_steps_entry> = Vec::new();
     let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/setup_steps.json";
     let json_data = fs::read_to_string(json_path).expect("Unable to read json");
     let json_data: serde_json::Value = serde_json::from_str(&json_data).expect("JSON format invalid");
     if let serde_json::Value::Array(setup_steps) = &json_data["setup_steps"] {
         for setup_steps_entry in setup_steps {
-            let setup_steps_entry_struct: Setup_Steps_Entry = serde_json::from_value(setup_steps_entry.clone()).unwrap();
+            let setup_steps_entry_struct: setup_steps_entry = serde_json::from_value(setup_steps_entry.clone()).unwrap();
             json_array.push(setup_steps_entry_struct);
         }
     }

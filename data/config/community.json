@@ -1,5 +1,5 @@
 {
-  "setup_steps": [
+  "community": [
     {
       "id": 0,
       "title": "update-pikaos-title",

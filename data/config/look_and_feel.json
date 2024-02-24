@@ -6,7 +6,7 @@
       "subtitle": "update-pikaos-subtitle",
       "icon": "pika-system-software-update",
       "button": "update-pikaos-button-label",
-      "only-in": "",
+      "onlyin": "pika",
       "command": "echo update"
     },
     {
@@ -15,7 +15,7 @@
       "subtitle": "update-pikaos-subtitle",
       "icon": "pika-system-software-update",
       "button": "update-pikaos-button-label",
-      "only-in": "gnome",
+      "onlyin": "kde",
       "command": "echo update"
     }
   ]

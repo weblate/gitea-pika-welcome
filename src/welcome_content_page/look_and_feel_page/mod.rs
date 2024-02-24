@@ -5,7 +5,7 @@ use duct::cmd;
 use glib::*;
 use serde::Deserialize;
 use std::cell::RefCell;
-use std::fs;
+use std::{env, fs};
 use std::path::Path;
 use std::rc::Rc;
 use std::{thread, time};
@@ -18,6 +18,7 @@ struct look_and_feel_entry {
     subtitle: String,
     icon: String,
     button: String,
+    onlyin: String,
     command: String,
 }
 
@@ -98,6 +99,7 @@ pub fn look_and_feel_page(
         let entry_subtitle = look_and_feel_entry.subtitle;
         let entry_icon = look_and_feel_entry.icon;
         let entry_button = look_and_feel_entry.button;
+        let entry_onlyin = look_and_feel_entry.onlyin;
         let entry_command = look_and_feel_entry.command;
         let entry_row = adw::ActionRow::builder()
             .title(t!(&entry_title))
@@ -158,7 +160,13 @@ pub fn look_and_feel_page(
                 }
             }),
         );
-        look_and_feel_page_listbox.append(&entry_row)
+        let current_desktop = match env::var_os("XDG_SESSION_DESKTOP") {
+            Some(v) => v.into_string().unwrap(),
+            None => panic!("XDG_SESSION_DESKTOP is not set"),
+        };
+        if entry_onlyin.is_empty() || current_desktop.contains(&entry_onlyin.to_lowercase()) {
+            look_and_feel_page_listbox.append(&entry_row)
+        }
     }
 
     look_and_feel_page_box.append(&look_and_feel_page_listbox);

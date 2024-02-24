@@ -57,6 +57,7 @@ pub fn setup_steps_page(
         .child(&setup_steps_page_box)
         .propagate_natural_width(true)
         .propagate_natural_height(true)
+        .min_content_width(520)
         .build();
 
     let internet_loop_context = MainContext::default();

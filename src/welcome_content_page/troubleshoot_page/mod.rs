@@ -57,6 +57,7 @@ pub fn troubleshoot_page(
         .child(&troubleshoot_page_box)
         .propagate_natural_width(true)
         .propagate_natural_height(true)
+        .min_content_width(520)
         .build();
 
     let internet_loop_context = MainContext::default();

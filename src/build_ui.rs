@@ -31,7 +31,7 @@ pub fn build_ui(app: &adw::Application) {
         .icon_name(APP_ICON)
         .default_width(glib_settings.int("window-width"))
         .default_height(glib_settings.int("window-height"))
-        .width_request(300)
+        .width_request(430)
         .height_request(500)
         .startup_id(APP_ID)
         .build();

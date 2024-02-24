@@ -1,4 +1,20 @@
 {
     "app_name": "PikaOS Welcome",
-    "app_dev": "Cosmo"
+    "app_dev": "Cosmo",
+    "cmd_err_dialog_body": "Command Failed to Launch",
+    "cmd_err_dialog_heading": "Error!",
+    "cmd_err_dialog_ok_label": "Ok",
+    "startup_switch_label": "Show on startup",
+    "welcome_page_title": "Welcome",
+    "setup_steps_page_title": "Setup Steps",
+    "recommended_addons_page_title": "Recommended Additions",
+    "look_and_feel_page_title": "Look and feel",
+    "community_page_title": "Join the community",
+    "troubleshoot_page_title": "Troubleshoot Issues",
+    "contribute_page_title": "Contribute to PikaOS",
+    "recommended_addons_command_dialog_heading": "APT Process Log",
+    "recommended_addons_command_dialog_ok_label": "Ok",
+    "welcome_page_text_title": "Welcome to PikaOS",
+    "welcome_page_text_description": "Thank you for choosing PikaOS!\nThis welcome screen will help guide you through the\navailable resources for PikaOS as well as help you setup \nyour computer to your liking.\n\nEnjoy!\nThe PikaOS team",
+    "window_banner_no_internet": "Application Locked: No Internet Connection!"
 }

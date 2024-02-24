@@ -2,22 +2,15 @@
 use adw::prelude::*;
 use adw::*;
 use glib::*;
-/// Use all gtk4 libraries (gtk4 -> gtk because cargo)
-/// Use all libadwaita libraries (libadwaita -> adw because cargo)
-
-
-
 //
 use std::cell::RefCell;
 use std::process::Command;
 use std::rc::Rc;
-use adw::glib::gobject_ffi::GValue;
-use gtk::Orientation::Horizontal;
 
-// carousel crates
-mod update_carousel;
+// stack crates
+mod welcome_page;
+use welcome_page::welcome_page;
 
-use update_carousel::*;
 use crate::config::{APP_GITHUB, APP_ICON, VERSION};
 
 pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::Box) {
@@ -103,8 +96,8 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .bidirectional()
         .build();
 
-    let welcome_content_page_split_view_breakpoint = adw::Breakpoint::new(BreakpointCondition::new_length(BreakpointConditionLengthType::MaxWidth, 400.0, LengthUnit::Px));
-    welcome_content_page_split_view_breakpoint.add_setter(&welcome_content_page_split_view, "show_sidebar", &false.to_value());
+    let welcome_content_page_split_view_breakpoint = adw::Breakpoint::new(BreakpointCondition::new_length(BreakpointConditionLengthType::MaxWidth, 600.0, LengthUnit::Px));
+    welcome_content_page_split_view_breakpoint.add_setter(&welcome_content_page_split_view, "collapsed", &true.to_value());
 
     window.add_breakpoint(welcome_content_page_split_view_breakpoint);
 
@@ -128,4 +121,6 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
             }
         }
     }));
+
+    welcome_page(&welcome_content_page_stack, &internet_connected);
 }

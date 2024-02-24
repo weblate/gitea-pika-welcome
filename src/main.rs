@@ -14,7 +14,7 @@ use glib::prelude::*;
 
 use std::boxed::Box;
 use users::*;
-use config::{APP_ID};
+use config::APP_ID;
 
 // application crates
 mod build_ui;

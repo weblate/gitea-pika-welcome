@@ -1,5 +1,7 @@
 #! /bin/bash
 AUTOSTART=$(gsettings get com.github.pikaos-linux.pikawelcome startup-show)
-if [[ "$AUTOSTART" == "true" ]]; then
+DISPLAY_CHECK=$(echo $DISPLAY)
+WHO=$(whoami)
+if [[ "$AUTOSTART" == "true" ]] && [[ $DISPLAY_CHECK ]] && [[ $WHO != "pikaos" ]] && [[ $WHO != "gnome-initial-setup" ]] ; then
 	pika-welcome
 fi

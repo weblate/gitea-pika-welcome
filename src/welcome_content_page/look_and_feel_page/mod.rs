@@ -5,9 +5,9 @@ use duct::cmd;
 use glib::*;
 use serde::Deserialize;
 use std::cell::RefCell;
-use std::{env, fs};
 use std::path::Path;
 use std::rc::Rc;
+use std::{env, fs};
 use std::{thread, time};
 
 #[allow(non_camel_case_types)]

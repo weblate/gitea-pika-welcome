@@ -29,16 +29,16 @@
       "title": "fabiscafe-devices-title",
       "subtitle": "fabiscafe-devices-subtitle",
       "icon": "pika-input-gaming",
-      "checkpkg": "fabiscafe-devices-extra",
-      "packages": "fabiscafe-devices-extra"
+      "checkpkg": "fabiscafe-devices",
+      "packages": "fabiscafe-devices"
     },
     {
       "id": 4,
       "title": "ttf-mscorefonts-installer-title",
       "subtitle": "ttf-mscorefonts-installer-subtitle",
       "icon": "pika-msttf",
-      "checkpkg": "ttf-mscorefonts-installer-extra",
-      "packages": "ttf-mscorefonts-installer-extra"
+      "checkpkg": "ttf-mscorefonts-installer",
+      "packages": "ttf-mscorefonts-installer"
     },
     {
       "id": 5,

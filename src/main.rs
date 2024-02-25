@@ -12,7 +12,6 @@ use std::env;
 
 use config::APP_ID;
 use std::boxed::Box;
-use users::*;
 
 // application crates
 mod build_ui;

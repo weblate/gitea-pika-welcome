@@ -76,7 +76,7 @@ pub fn look_and_feel_page(
     );
 
     let mut json_array: Vec<look_and_feel_entry> = Vec::new();
-    let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/look_and_feel.json";
+    let json_path = "/usr/share/pika-welcome/config/look_and_feel.json";
     let json_data = fs::read_to_string(json_path).expect("Unable to read json");
     let json_data: serde_json::Value =
         serde_json::from_str(&json_data).expect("JSON format invalid");

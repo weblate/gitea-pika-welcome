@@ -75,7 +75,7 @@ pub fn community_page(
     );
 
     let mut json_array: Vec<community_entry> = Vec::new();
-    let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/community.json";
+    let json_path = "/usr/share/pika-welcome/config/community.json";
     let json_data = fs::read_to_string(json_path).expect("Unable to read json");
     let json_data: serde_json::Value =
         serde_json::from_str(&json_data).expect("JSON format invalid");

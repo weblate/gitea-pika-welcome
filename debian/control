@@ -14,5 +14,5 @@ Rules-Requires-Root: no
 
 Package: pika-welcome
 Architecture: any
-Depends: ${shlibs:Depends}
+Depends: ${shlibs:Depends}, zenity
 Description: A frontend in GTK 4 and Libadwaita for Post install PikaOS setup.

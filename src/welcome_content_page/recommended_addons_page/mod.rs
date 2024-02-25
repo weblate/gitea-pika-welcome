@@ -124,7 +124,7 @@ pub fn recommended_addons_page(
     let entry_buttons_size_group = gtk::SizeGroup::new(gtk::SizeGroupMode::Both);
 
     let mut json_array: Vec<recommended_addons_entry> = Vec::new();
-    let json_path = "/home/ward/builds/pkg-pika-welcome/data/config/recommended_addons.json";
+    let json_path = "/usr/share/pika-welcome/config/recommended_addons.json";
     let json_data = fs::read_to_string(json_path).expect("Unable to read json");
     let json_data: serde_json::Value =
         serde_json::from_str(&json_data).expect("JSON format invalid");

@@ -10,9 +10,9 @@ export PATH := "/root/.cargo/bin:$(PWD):$(PATH)"
 	dh $@
 
 override_dh_auto_install:
-	mkdir -p debian/pika-welcome/usr/bin/
-	/root/.cargo/bin/cargo fetch
-	/root/.cargo/bin/cargo build --release
+    /root/.cargo/bin/cargo fetch
+    /root/.cargo/bin/cargo build --release
+    mkdir -p pika-welcome/usr/bin/
 	cp -vf target/release/pika-welcome pika-welcome/usr/bin/
 	chmod 755 pika-welcome/usr/bin/pika-welcome
 	cp -vf data/bin/pika-welcome pika-welcome/usr/bin/pika-welcome-autostart
@@ -30,3 +30,5 @@ override_dh_auto_install:
 	mkdir -p pika-welcome/usr/share/icons/hicolor/scalable/apps
 	cp -vf data/com.github.pikaos-linux.pikawelcome.svg pika-welcome/usr/share/icons/hicolor/scalable/apps/
 	cp -vf data/icons pika-welcome/usr/share/
+	mkdir -p pika-welcome/usr/share/pika-welcome
+	cp -vf data/config pika-welcome/usr/share/pika-welcome/

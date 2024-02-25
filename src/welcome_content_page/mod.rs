@@ -79,14 +79,14 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         }
     }
 
-    let mut translator_json_array: Vec<GString> = Vec::new();
+    let mut translator_json_array: Vec<&str> = Vec::new();
     let translator_json_path = "/usr/share/pika-welcome/config/translators.json";
     let translator_json_data = std::fs::read_to_string(dev_json_path).expect("Unable to read json");
     let translator_json_data: serde_json::Value =
         serde_json::from_str(&translator_json_data).expect("JSON format invalid");
     if let serde_json::Value::Array(translators) = &dev_json_data["translators"] {
         for translator in translators {
-            translator_json_array.push(translator["translator"].as_str().to_owned().unwrap().into())
+            translator_json_array.push(translator["translator"].as_str().to_owned().unwrap())
         }
     }
 
@@ -98,9 +98,9 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .hide_on_close(true)
         .developer_name(t!("app_dev"))
         .developers(dev_json_array)
-        .translator_credits(translator_json_array)
         .issue_url(APP_GITHUB.to_owned() + "/issues")
         .build();
+    credits_window.add_credit_section(Some(&t!("translators").to_string()), &translator_json_array);
 
     content_box.append(&window_title_bar);
 

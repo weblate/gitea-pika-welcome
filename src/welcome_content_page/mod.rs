@@ -68,14 +68,25 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .icon_name("dialog-information-symbolic")
         .build();
 
-    let mut json_array: Vec<GString> = Vec::new();
-    let json_path = "/usr/share/pika-welcome/config/credits.json";
-    let json_data = std::fs::read_to_string(json_path).expect("Unable to read json");
-    let json_data: serde_json::Value =
-        serde_json::from_str(&json_data).expect("JSON format invalid");
-    if let serde_json::Value::Array(developers) = &json_data["developers"] {
+    let mut dev_json_array: Vec<GString> = Vec::new();
+    let dev_json_path = "/usr/share/pika-welcome/config/credits.json";
+    let dev_json_data = std::fs::read_to_string(dev_json_path).expect("Unable to read json");
+    let dev_json_data: serde_json::Value =
+        serde_json::from_str(&dev_json_data).expect("JSON format invalid");
+    if let serde_json::Value::Array(developers) = &dev_json_data["developers"] {
         for developer in developers {
-            json_array.push(developer["dev"].as_str().to_owned().unwrap().into())
+            dev_json_array.push(developer["dev"].as_str().to_owned().unwrap().into())
+        }
+    }
+
+    let mut translator_json_array: Vec<GString> = Vec::new();
+    let translator_json_path = "/usr/share/pika-welcome/config/translators.json";
+    let translator_json_data = std::fs::read_to_string(dev_json_path).expect("Unable to read json");
+    let translator_json_data: serde_json::Value =
+        serde_json::from_str(&translator_json_data).expect("JSON format invalid");
+    if let serde_json::Value::Array(translators) = &dev_json_data["translators"] {
+        for translator in translators {
+            translator_json_array.push(translator["translator"].as_str().to_owned().unwrap().into())
         }
     }
 
@@ -86,7 +97,8 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         .version(VERSION)
         .hide_on_close(true)
         .developer_name(t!("app_dev"))
-        .developers(json_array)
+        .developers(dev_json_array)
+        .translator_credits(translator_json_array)
         .issue_url(APP_GITHUB.to_owned() + "/issues")
         .build();
 

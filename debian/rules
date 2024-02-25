@@ -29,6 +29,6 @@ override_dh_auto_install:
 	cp -vf data/pika-welcome-autostart.desktop  debian/pika-welcome/etc/xdg/autostart/
 	mkdir -p debian/pika-welcome/usr/share/icons/hicolor/scalable/apps
 	cp -vf data/com.github.pikaos-linux.pikawelcome.svg debian/pika-welcome/usr/share/icons/hicolor/scalable/apps/
-	cp -vf data/icons debian/pika-welcome/usr/share/
+	cp -rvf data/icons debian/pika-welcome/usr/share/
 	mkdir -p debian/pika-welcome/usr/share/pika-welcome
-	cp -vf data/config debian/pika-welcome/usr/share/pika-welcome/
+	cp -rvf data/config debian/pika-welcome/usr/share/pika-welcome/

@@ -23,6 +23,6 @@ install:
 	cp -vf data/pika-welcome-autostart.desktop  $(DESTDIR)/etc/xdg/autostart/
 	mkdir -p $(DESTDIR)/usr/share/icons/hicolor/scalable/apps
 	cp -vf data/com.github.pikaos-linux.pikawelcome.svg $(DESTDIR)/usr/share/icons/hicolor/scalable/apps/
-	cp -vf data/icons $(DESTDIR)/usr/share/
+	cp -rvf data/icons $(DESTDIR)/usr/share/
 	mkdir -p $(DESTDIR)/usr/share/pika-welcome
-	cp -vf data/config $(DESTDIR)/usr/share/pika-welcome/
+	cp -rvf data/config $(DESTDIR)/usr/share/pika-welcome/

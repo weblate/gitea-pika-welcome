@@ -67,5 +67,8 @@
     "open-pika-wiki-title": "",
     "open-pika-wiki-title-subtitle": "",
     "entry_row_button_install": "",
-    "entry_row_button_remove": ""
+    "entry_row_button_remove": "",
+    "translators": "",
+    "recommended_addons_command_dialog_success_true": "",
+    "recommended_addons_command_dialog_success_false": ""
 }

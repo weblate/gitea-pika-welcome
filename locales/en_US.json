@@ -68,5 +68,7 @@
     "open-pika-wiki-title-subtitle": "Check for known issues and their solutions.",
     "entry_row_button_install": "Install",
     "entry_row_button_remove": "Uninstall",
-    "translators": "Translators"
+    "translators": "Translators",
+    "recommended_addons_command_dialog_success_true": "APT Process Successful!",
+    "recommended_addons_command_dialog_success_false": "APT Process Failed!"
 }

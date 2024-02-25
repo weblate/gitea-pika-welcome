@@ -71,9 +71,9 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
     let mut dev_json_array: Vec<GString> = Vec::new();
     let dev_json_path = "/usr/share/pika-welcome/config/credits.json";
     let dev_json_data = std::fs::read_to_string(dev_json_path).expect("Unable to read json");
-    let dev_json_data: serde_json::Value =
+    let dev_json: serde_json::Value =
         serde_json::from_str(&dev_json_data).expect("JSON format invalid");
-    if let serde_json::Value::Array(developers) = &dev_json_data["developers"] {
+    if let serde_json::Value::Array(developers) = &dev_json["developers"] {
         for developer in developers {
             dev_json_array.push(developer["dev"].as_str().to_owned().unwrap().into())
         }
@@ -81,10 +81,10 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
 
     let mut translator_json_array: Vec<&str> = Vec::new();
     let translator_json_path = "/usr/share/pika-welcome/config/translators.json";
-    let translator_json_data = std::fs::read_to_string(dev_json_path).expect("Unable to read json");
-    let translator_json_data: serde_json::Value =
+    let translator_json_data = std::fs::read_to_string(translator_json_path).expect("Unable to read json");
+    let translator_json: serde_json::Value =
         serde_json::from_str(&translator_json_data).expect("JSON format invalid");
-    if let serde_json::Value::Array(translators) = &dev_json_data["translators"] {
+    if let serde_json::Value::Array(translators) = &translator_json["translators"] {
         for translator in translators {
             translator_json_array.push(translator["translator"].as_str().to_owned().unwrap())
         }

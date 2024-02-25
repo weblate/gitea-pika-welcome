@@ -9,7 +9,7 @@ install:
 	cargo build --release
 	cp -vf target/release/pika-welcome $(DESTDIR)/usr/bin/
 	chmod 755 $(DESTDIR)/usr/bin/pika-welcome
-	cp -vf data/bin/pika-welcome $(DESTDIR)/usr/bin/pika-welcome-autostart
+	cp -vf data/bin/pika-welcome-autostart $(DESTDIR)/usr/bin/
 	chmod 755 $(DESTDIR)/usr/bin/pika-welcome-autostart
 	mkdir -p $(DESTDIR)/usr/share/glib-2.0/schemas/
 	mkdir -p $(DESTDIR)/usr/share/

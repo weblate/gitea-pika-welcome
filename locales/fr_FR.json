@@ -1,6 +1,6 @@
 {
-    "app_name": "",
-    "app_dev": "",
+    "app_name": "PikaOS - Bienvenue",
+    "app_dev": "Cosmo",
     "cmd_err_dialog_body": "La commande a échoué d'éxecuter.",
     "cmd_err_dialog_heading": "Erreur!",
     "cmd_err_dialog_ok_label": "Ok",

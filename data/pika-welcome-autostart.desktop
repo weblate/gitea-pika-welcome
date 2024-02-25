@@ -1,12 +1,11 @@
 [Desktop Entry]
-Type=Application
 Name=Welcome to PikaOS
 Exec=pika-welcome-autostart
-Hidden=true
 Icon=com.github.pikaos-linux.pikawelcome
+StartupWMClass=pika_welcome
+Terminal=false
+Type=Application
+Terminal=false
 Categories=GNOME;GTK;Utility;
 Keywords=Gnome;GTK
 NoDisplay=true
-X-GNOME-Autostart-enabled=true
-X-KDE-AutostartScript=true
-AutostartCondition=GSettings com.github.pikaos-linux.pikawelcome startup-show

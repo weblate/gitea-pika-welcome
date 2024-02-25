@@ -4,9 +4,9 @@ all:
 	true
 
 install:
+	mkdir -p $(DESTDIR)/usr/bin/
 	cargo fetch
 	cargo build --release
-	mkdir -p $(DESTDIR)/usr/bin/
 	cp -vf target/release/pika-welcome $(DESTDIR)/usr/bin/
 	chmod 755 $(DESTDIR)/usr/bin/pika-welcome
 	cp -vf data/bin/pika-welcome $(DESTDIR)/usr/bin/pika-welcome-autostart

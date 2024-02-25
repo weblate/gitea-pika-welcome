@@ -86,7 +86,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         serde_json::from_str(&translator_json_data).expect("JSON format invalid");
     if let serde_json::Value::Array(translators) = &translator_json["translators"] {
         for translator in translators {
-            translator_json_array.push(translator["credit_translator"].as_str().to_owned().unwrap())
+            translator_json_array.push(translator["translator"].as_str().to_owned().unwrap())
         }
     }
 

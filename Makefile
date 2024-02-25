@@ -26,4 +26,3 @@ install:
 	cp -vf data/icons $(DESTDIR)/usr/share/
 	mkdir -p $(DESTDIR)/usr/share/pika-welcome
 	cp -vf data/config $(DESTDIR)/usr/share/pika-welcome/
-	#makepot $(DESTDIR)/usr/share/locale

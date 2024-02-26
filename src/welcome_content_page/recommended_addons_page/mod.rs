@@ -155,10 +155,11 @@ pub fn recommended_addons_page(
         let entry_packages = recommended_addons_entry.packages;
 
         gio::spawn_blocking(
-            clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || {
+            clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || loop {
+        thread::sleep(time::Duration::from_secs(6));
                 let checkpkg_command = Command::new("dpkg")
                     .arg("-s")
-                    .arg(entry_checkpkg)
+                    .arg(&entry_checkpkg)
                     .output()
                     .expect("failed to execute process");
                 if checkpkg_command.status.success() {

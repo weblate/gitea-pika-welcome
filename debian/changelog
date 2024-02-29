@@ -1,3 +1,9 @@
+pika-welcome (5.0.0-100pika7) pikauwu; urgency=low
+
+  * Temp internet fix
+
+ -- Ward Nakchbandi <hotrod.master@hotmail.com>  Thu, 20 Sep 2022 22:01:00 +0000
+
 pika-welcome (5.0.0-100pika6) pikauwu; urgency=low
 
   * First release

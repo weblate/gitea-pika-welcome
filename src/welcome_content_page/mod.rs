@@ -44,7 +44,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
             //    }
             //}
             let check_internet_connection_cli = Command::new("ping")
-                .arg("ppa.pika-os.com")
+                .arg("iso.pika-os.com")
                 .arg("-c 1")
                 .output()
                 .expect("failed to execute process");

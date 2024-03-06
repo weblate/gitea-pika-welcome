@@ -1,5 +1,5 @@
 {
-    "app_name": "PikaOS Willkommen",
+    "app_name": "PikaOS Ersteinrichtung",
     "app_dev": "Cosmo",
     "cmd_err_dialog_body": "Der Befehl konnte nicht gestartet werden",
     "cmd_err_dialog_heading": "Fehler!",
@@ -68,7 +68,7 @@
     "open-pika-wiki-title-subtitle": "Suche nach bekannten Problemen und deren Lösungen.",
     "entry_row_button_install": "Installieren",
     "entry_row_button_remove": "Deinstallieren",
-    "translators": "",
-    "recommended_addons_command_dialog_success_true": "",
-    "recommended_addons_command_dialog_success_false": ""
+    "translators": "Übersetzer",
+    "recommended_addons_command_dialog_success_true": "APT-Prozess erfolgreich!",
+    "recommended_addons_command_dialog_success_false": "APT-Prozess fehlgeschlagen!"
 }

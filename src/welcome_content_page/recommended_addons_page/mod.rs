@@ -156,7 +156,6 @@ pub fn recommended_addons_page(
 
         gio::spawn_blocking(
             clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || loop {
-        thread::sleep(time::Duration::from_secs(6));
                 let checkpkg_command = Command::new("dpkg")
                     .arg("-s")
                     .arg(&entry_checkpkg)
@@ -167,6 +166,7 @@ pub fn recommended_addons_page(
                 } else {
                     checkpkg_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
                 }
+                thread::sleep(time::Duration::from_secs(6));
             }),
         );
 
@@ -275,33 +275,39 @@ pub fn recommended_addons_page(
                 recommended_addons_command_dialog.set_body("");
                 recommended_addons_command_dialog.present();
                 if &entry_row_button.widget_name() == "true" {
-                    gio::spawn_blocking(clone!(@strong log_loop_sender, @strong log_status_loop_sender, @strong entry_packages => move || {
-                        let command = run_addon_command(log_loop_sender, "remove", &entry_packages);
+                    let log_status_loop_sender_clone = log_status_loop_sender.clone();
+                    let log_loop_sender_clone= log_loop_sender.clone();
+                    let entry_packages_clone= entry_packages.clone();
+                    std::thread::spawn(move || {
+                        let command = run_addon_command(log_loop_sender_clone, "remove", &entry_packages_clone);
                         match command {
                             Ok(_) => {
                                 println!("Status: Addon Command Successful");
-                                log_status_loop_sender.send_blocking(true).expect("The channel needs to be open.");
+                                log_status_loop_sender_clone.send_blocking(true).expect("The channel needs to be open.");
                             }
                             Err(_) => {
                                 println!("Status: Addon Command Failed");
-                                log_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
+                                log_status_loop_sender_clone.send_blocking(false).expect("The channel needs to be open.");
                             }
                         }
-                    }));
+                    });
                 } else {
-                    gio::spawn_blocking(clone!(@strong log_loop_sender, @strong log_status_loop_sender, @strong entry_packages => move || {
-                        let command = run_addon_command(log_loop_sender, "install", &entry_packages);
+                    let log_status_loop_sender_clone = log_status_loop_sender.clone();
+                    let log_loop_sender_clone= log_loop_sender.clone();
+                    let entry_packages_clone= entry_packages.clone();
+                    std::thread::spawn(move || {
+                        let command = run_addon_command(log_loop_sender_clone, "install", &entry_packages_clone);
                         match command {
                             Ok(_) => {
                                 println!("Status: Addon Command Successful");
-                                log_status_loop_sender.send_blocking(true).expect("The channel needs to be open.");
+                                log_status_loop_sender_clone.send_blocking(true).expect("The channel needs to be open.");
                             }
                             Err(_) => {
                                 println!("Status: Addon Command Failed");
-                                log_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
+                                log_status_loop_sender_clone.send_blocking(false).expect("The channel needs to be open.");
                             }
                         }
-                    }));
+                    });
                 }
         }));
 

@@ -1,3 +1,9 @@
+pika-welcome (5.0.0-101pika1) pika; urgency=low
+
+  * Port to PikaOS 4
+
+ -- Ward Nakchbandi <hotrod.master@hotmail.com>  Thu, 20 Sep 2022 22:01:00 +0000
+
 pika-welcome (5.0.0-100pika8) pikauwu; urgency=low
 
   * Temp internet fix

@@ -21,9 +21,44 @@ mod save_window_size;
 mod welcome_content_page;
 
 // Init translations for current crate.
+use rust_i18n::Backend;
+use std::collections::HashMap;
+use std::fs;
+
+pub struct I18nBackend {
+    trs: HashMap<String, HashMap<String, String>>,
+}
+impl I18nBackend {
+    fn new() -> Self {
+        let mut trs = HashMap::new();
+        let locales_dir = fs::read_dir("/usr/lib/pika/pika-welcome/locales").expect("No translation files found");
+        for locale_file in locales_dir {
+            let locale_file_path = locale_file.expect("couldn't change dir entry to path").path();
+            let locale = String::from(locale_file_path.file_name().unwrap().to_str().unwrap().trim_end_matches(".json"));
+            let locale_data = fs::read_to_string(locale_file_path).expect(format!("invalid json for {}", locale).as_str());
+            let locale_json = serde_json::from_str::<HashMap<String, String>>(&locale_data).unwrap();
+            trs.insert(locale.to_string(), locale_json);
+        }
+
+        return Self {
+            trs
+        };
+    }
+}
+
+impl Backend for I18nBackend {
+    fn available_locales(&self) -> Vec<&str> {
+        return self.trs.keys().map(|k| k.as_str()).collect();
+    }
+
+    fn translate(&self, locale: &str, key: &str) -> Option<&str> {
+        return self.trs.get(locale)?.get(key).map(|k| k.as_str());
+    }
+}
+
 #[macro_use]
 extern crate rust_i18n;
-i18n!("locales", fallback = "en_US");
+i18n!(fallback = "en_US", backend = I18nBackend::new());
 
 /// main function
 fn main() {

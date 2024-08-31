@@ -1,10 +1,8 @@
 #!/bin/bash
-if echo $XDG_SESSION_DESKTOP | grep -i -E 'gnome|pika|ubuntu'
+
+if [ -f /usr/bin/pikman-update-manager ]
 then
-  gnome-software "$@"
-elif echo $XDG_SESSION_DESKTOP | grep -i -E 'plasma|kde'
-then
-  plasma-discover "$@"
+	pikman-update-manager
 else
-  zenity --error --text "$XDG_SESSION_DESKTOP does have a registered software-manager"
+	/usr/lib/pika/pika-welcome/scripts/software-manager.sh
 fi

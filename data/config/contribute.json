@@ -2,11 +2,11 @@
   "contribute": [
     {
       "id": 0,
-      "title": "contribute-github-title",
-      "subtitle": "contribute-github-subtitle",
-      "icon": "pika-github",
+      "title": "contribute-gitea-title",
+      "subtitle": "contribute-gitea-subtitle",
+      "icon": "pika-gitea",
       "button": "launch-label",
-      "command": "xdg-open https://github.com/PikaOS-Linux"
+      "command": "xdg-open https://git.pika-os.com"
     },
     {
       "id": 0,
@@ -14,7 +14,7 @@
       "subtitle": "translate-weblate-subtitle",
       "icon": "pika-weblate",
       "button": "launch-label",
-      "command": "xdg-open https://hosted.weblate.org/projects/pikaos/"
+      "command": "xdg-open https://weblate.pika-os.com"
     }
   ]
 }

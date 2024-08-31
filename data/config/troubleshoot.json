@@ -6,7 +6,7 @@
       "subtitle": "open-pika-wiki-title-subtitle",
       "icon": "pika-emblem-important",
       "button": "launch-label",
-      "command": "zenity --error --text 'Coming Soon :('"
+      "command": "xdg-open https://wiki.pika-os.com"
     }
   ]
 }

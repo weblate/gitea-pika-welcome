@@ -15,7 +15,7 @@
       "subtitle": "open-pika-gnome-layouts-subtitle",
       "icon": "pika-desktop",
       "button": "launch-label",
-      "onlyin": "pika",
+      "onlyin": "gnome",
       "command": "/usr/bin/pika-gnome-layouts"
     },
     {
@@ -24,7 +24,7 @@
       "subtitle": "open-gnome-tweaks-subtitle",
       "icon": "pika-applications-graphics",
       "button": "launch-label",
-      "onlyin": "pika",
+      "onlyin": "gnome",
       "command": "/usr/bin/gnome-tweaks"
     },
     {
@@ -33,7 +33,7 @@
       "subtitle": "open-gnome-extensions-subtitle",
       "icon": "pika-application-x-addon",
       "button": "launch-label",
-      "onlyin": "pika",
+      "onlyin": "gnome",
       "command": "/usr/bin/extension-manager"
     }
   ]

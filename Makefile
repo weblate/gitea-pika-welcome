@@ -15,6 +15,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/
 	mkdir -p $(DESTDIR)/usr/lib/pika/pika-welcome/scripts/
 	cp -rvf data/scripts/*.sh $(DESTDIR)/usr/lib/pika/pika-welcome/scripts/
+	cp -rvf locales /usr/lib/pika/pika-welcome/locales
 	chmod 755 $(DESTDIR)/usr/lib/pika/pika-welcome/scripts/*.sh
 	cp data/com.github.pikaos-linux.pikawelcome.gschema.xml $(DESTDIR)/usr/share/glib-2.0/schemas/
 	mkdir -p $(DESTDIR)/usr/share/applications

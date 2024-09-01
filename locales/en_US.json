@@ -24,6 +24,8 @@
     "install-media-codec-subtitle": "Get media codecs and libraries (Such as : FFMPEG, and VA-API)\nwhich are needed for many creative applications \nand provide hardware accelerated video playback/decoding and encoding.",
     "open-driver-manager-title": "Open Driver Manager",
     "open-driver-manager-subtitle": "A driver utility to install various driver such as the\nproprietary NVIDIA® drivers that significantly increase performance for NVIDIA cards \nand microcode for CPUs and such.",
+    "open-kernel-manager-title": "Open Kernel Manager",
+    "open-kernel-manager-subtitle": "A utility to mange kernel versions and SCX schedulers.",
     "open-software-manager-title": "Install more apps from the Software Manager",
     "open-software-manager-subtitle": "Install and update software using the PikaOS Software Manager.",
     "open-webapp-manager-title": "Install Webapps",

@@ -25,6 +25,14 @@
       "command": "/usr/lib/pika/pika-welcome/scripts/driver-manager.sh"
     },
     {
+      "id": 5,
+      "title": "open-kernel-manager-title",
+      "subtitle": "open-kernel-manager-subtitle",
+      "icon": "com.github.pikaos-linux.pika-kernel-manager",
+      "button": "launch-label",
+      "command": "pika-kernel-manager &"
+    },
+    {
       "id": 3,
       "title": "open-software-manager-title",
       "subtitle": "open-software-manager-subtitle",

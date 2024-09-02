@@ -19,7 +19,7 @@ INSTALLED="no"
 
 package_check() {
       # Check if codecs are already installed
-      dpkg -s pika-codecs-meta
+      /usr/lib/pika/pika-welcome/scripts/check-pkg.sh pika-codecs-meta
       if [ $? -eq 0 ]; then
           export INSTALLED="yes"
       fi

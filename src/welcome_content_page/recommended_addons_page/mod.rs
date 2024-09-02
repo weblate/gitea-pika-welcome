@@ -156,8 +156,7 @@ pub fn recommended_addons_page(
 
         gio::spawn_blocking(
             clone!(@strong checkpkg_status_loop_sender, @strong entry_checkpkg => move || loop {
-                let checkpkg_command = Command::new("dpkg")
-                    .arg("-s")
+                let checkpkg_command = Command::new("/usr/lib/pika/pika-welcome/scripts/check-pkg.sh")
                     .arg(&entry_checkpkg)
                     .output()
                     .expect("failed to execute process");

@@ -34,6 +34,7 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
     let internet_loop_sender = internet_loop_sender.clone();
     // The long running operation runs now in a separate thread
     gio::spawn_blocking(move || {
+        let mut last_result = false;
         loop {
             //match check_internet_connection() {
             //    Ok(_) => {
@@ -43,6 +44,10 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
             //        internet_loop_sender.send_blocking(false).expect("The channel needs to be open.");
             //    }
             //}
+            if last_result == true {
+                std::thread::sleep(std::time::Duration::from_secs(60));
+            }
+            
             let check_internet_connection_cli = Command::new("ping")
                 .arg("iso.pika-os.com")
                 .arg("-c 1")
@@ -52,10 +57,12 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
                 internet_loop_sender
                     .send_blocking(true)
                     .expect("The channel needs to be open.");
+                last_result = true
             } else {
                 internet_loop_sender
                     .send_blocking(false)
                     .expect("The channel needs to be open.");
+                last_result = false
             }
         }
     });
@@ -206,10 +213,10 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         &window_banner,
         &internet_connected,
     );
-    setup_steps_page(&welcome_content_page_stack, &window, &internet_connected);
-    recommended_addons_page(&welcome_content_page_stack, &window, &internet_connected);
-    look_and_feel_page(&welcome_content_page_stack, &window, &internet_connected);
-    troubleshoot_page(&welcome_content_page_stack, &window, &internet_connected);
-    community_page(&welcome_content_page_stack, &window, &internet_connected);
-    contribute_page(&welcome_content_page_stack, &window, &internet_connected);
+    setup_steps_page(&welcome_content_page_stack, &window);
+    recommended_addons_page(&welcome_content_page_stack, &window);
+    look_and_feel_page(&welcome_content_page_stack, &window);
+    troubleshoot_page(&welcome_content_page_stack, &window);
+    community_page(&welcome_content_page_stack, &window);
+    contribute_page(&welcome_content_page_stack, &window);
 }

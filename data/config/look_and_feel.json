@@ -16,7 +16,7 @@
       "icon": "pika-desktop",
       "button": "launch-label",
       "onlyin": "gnome",
-      "command": "/usr/bin/pika-gnome-layouts &"
+      "command": "/usr/bin/pika-gnome-layouts"
     },
     {
       "id": 2,

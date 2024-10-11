@@ -213,10 +213,10 @@ pub fn welcome_content_page(window: &adw::ApplicationWindow, content_box: &gtk::
         &window_banner,
         &internet_connected,
     );
-    setup_steps_page(&welcome_content_page_stack, &window);
+    setup_steps_page(&welcome_content_page_stack);
     recommended_addons_page(&welcome_content_page_stack, &window);
-    look_and_feel_page(&welcome_content_page_stack, &window);
-    troubleshoot_page(&welcome_content_page_stack, &window);
-    community_page(&welcome_content_page_stack, &window);
-    contribute_page(&welcome_content_page_stack, &window);
+    look_and_feel_page(&welcome_content_page_stack);
+    troubleshoot_page(&welcome_content_page_stack);
+    community_page(&welcome_content_page_stack);
+    contribute_page(&welcome_content_page_stack);
 }

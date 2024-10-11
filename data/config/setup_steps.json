@@ -30,7 +30,7 @@
       "subtitle": "open-kernel-manager-subtitle",
       "icon": "com.github.pikaos-linux.pika-kernel-manager",
       "button": "launch-label",
-      "command": "pika-kernel-manager &"
+      "command": "pika-kernel-manager"
     },
     {
       "id": 3,

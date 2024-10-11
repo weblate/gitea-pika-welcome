@@ -1,11 +1,9 @@
 // GTK crates
 use adw::prelude::*;
 use adw::*;
-use duct::cmd;
 use glib::*;
 use serde::Deserialize;
 use std::fs;
-use std::path::Path;
 
 #[allow(non_camel_case_types)]
 #[derive(PartialEq, Debug, Eq, Hash, Clone, Ord, PartialOrd, Deserialize)]
@@ -20,7 +18,6 @@ struct setup_steps_entry {
 
 pub fn setup_steps_page(
     setup_steps_content_page_stack: &gtk::Stack,
-    window: &adw::ApplicationWindow,
 ) {
     let setup_steps_page_box = gtk::Box::builder().vexpand(true).hexpand(true).build();
 
@@ -60,11 +57,6 @@ pub fn setup_steps_page(
     let entry_buttons_size_group = gtk::SizeGroup::new(gtk::SizeGroupMode::Both);
 
     for setup_steps_entry in json_array {
-        let (entry_command_status_loop_sender, entry_command_status_loop_receiver) =
-            async_channel::unbounded();
-        let entry_command_status_loop_sender: async_channel::Sender<bool> =
-            entry_command_status_loop_sender.clone();
-
         let entry_title = setup_steps_entry.title;
         let entry_subtitle = setup_steps_entry.subtitle;
         let entry_icon = setup_steps_entry.icon;
@@ -91,43 +83,18 @@ pub fn setup_steps_page(
         entry_row.add_prefix(&entry_row_icon);
         entry_row.add_suffix(&entry_row_button);
 
-        entry_row_button.connect_clicked(clone!(@strong entry_command, @weak window => move |_| {
-                gio::spawn_blocking(clone!(@strong entry_command_status_loop_sender, @strong entry_command => move || {
-                            if Path::new("/tmp/pika-welcome-exec.sh").exists() {
-                            fs::remove_file("/tmp/pika-welcome-exec.sh").expect("Bad permissions on /tmp/pika-installer-gtk4-target-manual.txt");
-                            }
-                            fs::write("/tmp/pika-welcome-exec.sh", "#! /bin/bash\nset -e\n".to_owned() + &entry_command).expect("Unable to write file");
-                            let _ = cmd!("chmod", "+x", "/tmp/pika-welcome-exec.sh").read();
-                            let command = cmd!("/tmp/pika-welcome-exec.sh").run();
-                            if command.is_err() {
-                                entry_command_status_loop_sender.send_blocking(false).expect("The channel needs to be open.");
-                            } else {
-                                entry_command_status_loop_sender.send_blocking(true).expect("The channel needs to be open.");
-                            }
-                }));
+        entry_row_button.connect_clicked(clone!(@strong entry_command => move |_| {
+            let entry_command = entry_command.clone();
+            std::thread::spawn(move || {
+                if std::path::Path::new("/tmp/pika-welcome-exec.sh").exists() {
+                    fs::remove_file("/tmp/pika-welcome-exec.sh").expect("Bad permissions on /tmp/pika-installer-gtk4-target-manual.txt");
+                }
+                fs::write("/tmp/pika-welcome-exec.sh", "#! /bin/bash\nset -e\n".to_owned() + &entry_command).expect("Unable to write file");
+                std::process::Command::new("chmod").args(["+x", "/tmp/pika-welcome-exec.sh"]).status().unwrap();
+                std::process::Command::new("/tmp/pika-welcome-exec.sh").spawn().unwrap();
+            });
         }));
 
-        let cmd_err_dialog = adw::MessageDialog::builder()
-            .body(t!("cmd_err_dialog_body"))
-            .heading(t!("cmd_err_dialog_heading"))
-            .transient_for(window)
-            .build();
-        cmd_err_dialog.add_response(
-            "cmd_err_dialog_ok",
-            &t!("cmd_err_dialog_ok_label").to_string(),
-        );
-
-        let entry_command_status_loop_context = MainContext::default();
-        // The main loop executes the asynchronous block
-        entry_command_status_loop_context.spawn_local(
-            clone!(@weak cmd_err_dialog, @strong entry_command_status_loop_receiver => async move {
-                while let Ok(state) = entry_command_status_loop_receiver.recv().await {
-                    if state == false {
-                        cmd_err_dialog.present();
-                    }
-                }
-            }),
-        );
         setup_steps_page_listbox.append(&entry_row)
     }
 

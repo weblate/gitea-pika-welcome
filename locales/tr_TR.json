@@ -30,8 +30,6 @@
     "open-webapp-manager-subtitle": "Favori web tarayıcınızı kullanarak Web Uygulamalarını yükleyin.\nFavori Web Uygulamalarınızı masaüstü Uygulamalarına çevirin.",
     "pika-gameutils-meta-title": "PikaOS Oyun Araçlarını yükleyin",
     "pika-gameutils-meta-subtitle": "Steam, Lutris, Goverlay + Mangohud, Wine, Winetricks, VKBasalt ve dahasını \nyükleyen bir meta paketidir.",
-    "protonup-qt-title": "ProtonUP-QT Yükleyin",
-    "protonup-qt-subtitle": "Steam Play için Proton GE Uyumluluk aracını yönetmek için GloiousEggroll tarafından yapılan Wine ve ek bileşenlere dayalı bir araç.\nBu araç, Steam'in Windows oyunlarını yerel olarak Linux'ta çalıştırmasını sağlar.",
     "pika-gameutils-meta-extra-title": "PikaOS Ekstra Oyun araçlarını yükleyin",
     "pika-gameutils-meta-extra-subtitle": "Heroic Oyun Başlatıcısını ve Bottles programını temel oyun araçları paketiyle birlikte yükler",
     "fabiscafe-devices-title": "Birçok controller ve VR ekipmanı için Cihaz Yapılandırmalarını yükleyin",

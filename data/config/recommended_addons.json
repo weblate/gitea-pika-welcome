@@ -9,14 +9,6 @@
       "packages": "pika-gameutils-meta"
     },
     {
-      "id": 1,
-      "title": "protonup-qt-title",
-      "subtitle": "protonup-qt-subtitle",
-      "icon": "pika-net.davidotek.pupgui2",
-      "checkpkg": "protonup-qt",
-      "packages": "protonup-qt"
-    },
-    {
       "id": 2,
       "title": "pika-gameutils-meta-extra-title",
       "subtitle": "pika-gameutils-meta-extra-subtitle",

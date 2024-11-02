@@ -32,8 +32,6 @@
     "open-webapp-manager-subtitle": "Install WebApps with your favourite web browser as a backend. Turn your favourite WebApps into \nnative desktop applications.",
     "pika-gameutils-meta-title": "Install the PikaOS Game Utilites",
     "pika-gameutils-meta-subtitle": "A meta package that installs: Steam, Lutris, Goverlay + Mangohud, Wine, Winetricks, VKBasalt, \nand many more...",
-    "protonup-qt-title": "Install ProtonUP-QT",
-    "protonup-qt-subtitle": "A tool for managing the Proton GE Compatibility tool for Steam Play based on Wine and additional components made by GloriousEggroll\nthis tool allows steam to run windows games natively on linux.",
     "pika-gameutils-meta-extra-title": "Install the PikaOS Game Utilites Extras",
     "pika-gameutils-meta-extra-subtitle": "Installs Heroic Game Launcher and Bottles Along side the base gameutils package",
     "fabiscafe-devices-title": "Install Device Configrations for many controllers and VR equipment",

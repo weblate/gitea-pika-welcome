@@ -1,4 +1,4 @@
-pika-welcome (5.0.0-101pika6) pika; urgency=low
+pika-welcome (5.0.0-101pika7) pika; urgency=low
 
   * Port to PikaOS 4
 

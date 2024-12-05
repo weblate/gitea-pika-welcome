@@ -45,7 +45,7 @@ pub fn build_ui(app: &adw::Application) {
             save_window_size(&window, &glib_settings);
             application.remove_window(window);
         }
-        glib::Propagation::Proceed
+        std::process::exit(0);
     });
 
     //

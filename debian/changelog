@@ -1,3 +1,9 @@
+pika-welcome (5.0.1-101pika1) pika; urgency=low
+
+  * Fix closing and change some configs
+
+ -- Ward Nakchbandi <hotrod.master@hotmail.com>  Thu, 20 Sep 2022 22:01:00 +0000
+
 pika-welcome (5.0.0-101pika8) pika; urgency=low
 
   * Port to PikaOS 4

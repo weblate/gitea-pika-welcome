@@ -9,12 +9,20 @@
       "command": "xdg-open https://git.pika-os.com"
     },
     {
-      "id": 0,
+      "id": 1,
       "title": "translate-weblate-title",
       "subtitle": "translate-weblate-subtitle",
       "icon": "pika-weblate",
       "button": "launch-label",
-      "command": "xdg-open https://weblate.pika-os.com"
+      "command": "xdg-open https://hosted.weblate.org/projects/pikaos/"
+    },
+    {
+      "id": 1,
+      "title": "donate-kofi-title",
+      "subtitle": "donate-kofi-subtitle",
+      "icon": "pika-kofi",
+      "button": "launch-label",
+      "command": "xdg-open https://ko-fi.com/pikaos"
     }
   ]
 }

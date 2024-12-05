@@ -56,7 +56,7 @@
     "open-gnome-tweaks-subtitle": "Open gnome-tweaks.",
     "open-gnome-extensions-title": "Add Extensions to your desktop",
     "open-gnome-extensions-subtitle": "Open Gnome extension manager.",
-    "contribute-gitea-title": "Visit Our Github Repository",
+    "contribute-gitea-title": "Visit Our Gitea",
     "contribute-gitea-subtitle": "Contribute code or open issues and pull request to PikaOS Github.",
     "translate-weblate-title": "Visit Our Weblate Page",
     "translate-weblate-subtitle": "Translate our Applications to your language.",
@@ -70,5 +70,7 @@
     "entry_row_button_remove": "Uninstall",
     "translators": "Translators",
     "recommended_addons_command_dialog_success_true": "APT Process Successful!",
-    "recommended_addons_command_dialog_success_false": "APT Process Failed!"
+    "recommended_addons_command_dialog_success_false": "APT Process Failed!",
+    "donate-kofi-title": "Visit Our Ko-fi Page",
+    "donate-kofi-subtitle": "Donate Money to PikaOS and help the developers financially."
 }

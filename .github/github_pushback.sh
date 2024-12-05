@@ -16,14 +16,14 @@ ssh-keyscan  -H git.pika-os.com >> ~/.ssh/known_hosts
 # Commit changes to git
 git config --global user.name 'Github Gitea Push Back Key - Cosmo'
 git config --global user.email 'cosmo@pika-os.com'
-#git config --global --add safe.directory /__w/gitea-pika-first-setup/gitea-pika-first-setup
+#git config --global --add safe.directory /__w/gitea-pika-welcome/gitea-pika-welcome
 
-git clone git@git.pika-os.com:custom-gui-packages/pika-first-setup
+git clone git@git.pika-os.com:custom-gui-packages/pika-welcome
 
-rm -rfv ./gitea-pika-first-setup/.git
-cp -rfv ./pika-first-setup/.git ./gitea-pika-first-setup/
+rm -rfv ./gitea-pika-welcome/.git
+cp -rfv ./pika-welcome/.git ./gitea-pika-welcome/
 
-cd ./gitea-pika-first-setup
+cd ./gitea-pika-welcome
 git add .
 git commit -am"Github Mirror Push Back"
 #git config pull.rebase true
